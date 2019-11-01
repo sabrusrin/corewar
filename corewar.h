@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:11:02 by adavis            #+#    #+#             */
-/*   Updated: 2019/10/31 17:04:59 by adavis           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:38:25 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct		s_memcell {
 	unsigned char	value;
-	int				player_id;
+	int				champ_id;
 }					t_memcell;
 
 typedef struct		s_champ {
@@ -28,10 +28,25 @@ typedef struct		s_champ {
 	int				fd;
 }					t_champ;
 
+typedef struct		s_head
+{
+	int				id;
+	int				champ_id;
+	int				carry;
+	int				op_code;
+	int				last_live;
+	int				to_op;
+	int				pos;
+	int				to_next;
+	unsigned int	*regs;
+	struct s_head	*next;
+}					t_head;
+
 typedef struct 		s_corewar
 {
 	t_memcell		*arena;
 	t_champ			*champs;
+	t_head			*heads;
 	int				champs_cnt;
 	int				last_alive_id;
 	int				cycles_passed;
@@ -49,13 +64,14 @@ void				arena_print(t_corewar *cw);
 /*
 **	Memcell methods (memcell.c)
 */
-void				memcell_set(t_corewar *cw, int i, int value, int player_id);
+void				memcell_set(t_corewar *cw, int i, int value, int champ_id);
 
 /*
 **	Champs methods (champs.c)
 */
 int					champs_init(t_corewar *cw, int ac, char **av);
 int					champs_load(t_corewar *cw);
+int					champs_greet(t_corewar *cw);
 
 /*
 **	Hex files methods (hex.c)
@@ -63,5 +79,18 @@ int					champs_load(t_corewar *cw);
 char				*hex_get_string(int fd, int size);
 int					hex_check_null(int fd);
 int					hex_get_nbr(int fd, int size);
+
+/*
+**	Heads methods (heads.c)
+*/
+int					heads_init(t_corewar *cw);
+void				heads_print(t_corewar *cw);
+
+/*
+**	Exit methods (exit.c)
+*/
+void				exit_null_block();
+void				exit_header();
+void				exit_open(char *file);
 
 #endif

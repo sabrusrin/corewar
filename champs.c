@@ -6,11 +6,29 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 13:47:36 by adavis            #+#    #+#             */
-/*   Updated: 2019/10/31 17:06:21 by adavis           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:52:43 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int		champs_greet(t_corewar *cw)
+{
+	int		i;
+
+	ft_printf("\e[7m # | %-32s| %-64s| %-4s  \e[0m\n",
+													"Name", "Comment", "Size");
+	i = -1;
+	while (++i < cw->champs_cnt)
+	{
+		ft_printf(" %d | ", i + 1);
+		ft_printf("%-32s| ", cw->champs[i].name);
+		ft_printf("%-64s| ", cw->champs[i].comment);
+		ft_printf("%d\n", cw->champs[i].size);
+	}
+	ft_printf("\n");
+	return (0);
+}
 
 int		champs_init(t_corewar *cw, int ac, char **av)
 {
@@ -21,16 +39,18 @@ int		champs_init(t_corewar *cw, int ac, char **av)
 	i = -1;
 	while (++i + 1 < ac)
 	{
-		cw->champs[i].fd = open(av[i + 1], O_RDONLY);
+		if ((cw->champs[i].fd = open(av[i + 1], O_RDONLY)) == -1)
+			exit_open(av[i + 1]);
 		if (hex_get_nbr(cw->champs[i].fd, 4) != COREWAR_EXEC_MAGIC)
-			ft_printf("Header error.\n");
+			exit_header();
 		cw->champs[i].name = hex_get_string(cw->champs[i].fd, PROG_NAME_LENGTH);
 		if (!hex_check_null(cw->champs[i].fd))
-			ft_printf("NULL block error.\n");
+			exit_null_block();
 		cw->champs[i].size = hex_get_nbr(cw->champs[i].fd, 4);
-		cw->champs[i].comment = hex_get_string(cw->champs[i].fd, COMMENT_LENGTH);
+		cw->champs[i].comment = hex_get_string(cw->champs[i].fd,
+																COMMENT_LENGTH);
 		if (!hex_check_null(cw->champs[i].fd))
-			ft_printf("NULL block error.\n");
+			exit_null_block();
 	}
 	cw->champs_cnt = i;
 	return (0);

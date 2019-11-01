@@ -7,7 +7,8 @@ SRC			=	corewar.c \
 				memcell.c \
 				hex.c \
 				champs.c \
-				get_string.c
+				heads.c \
+				exit.c
 OBJ			=	$(SRC:%.c=%.o)
 
 all: $(NAME)

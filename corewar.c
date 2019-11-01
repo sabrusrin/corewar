@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:15:17 by adavis            #+#    #+#             */
-/*   Updated: 2019/10/31 17:05:32 by adavis           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:40:38 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	too_many_players(char *name)
 	return (usage(name));
 }
 
-int			main(int ac, char **av) {
+int			main(int ac, char **av)
+{
 	t_corewar		cw;
 
 	if (ac < 2)
@@ -35,5 +36,8 @@ int			main(int ac, char **av) {
 	champs_init(&cw, ac, av);
 	arena_init(&cw);
 	champs_load(&cw);
+	champs_greet(&cw);
+	heads_init(&cw);
 	arena_print(&cw);
+	heads_print(&cw);
 }

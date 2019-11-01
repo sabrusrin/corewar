@@ -6,20 +6,22 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 19:16:27 by adavis            #+#    #+#             */
-/*   Updated: 2019/10/31 14:13:21 by adavis           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:41:15 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-char	*hex_get_string(int fd, int size) {
+char	*hex_get_string(int fd, int size)
+{
 	char	buf;
 	char	*str;
 	int		i;
 
 	str = malloc(size);
 	i = -1;
-	while (++i < size) {
+	while (++i < size)
+	{
 		read(fd, &buf, 1);
 		str[i] = buf;
 	}
@@ -49,7 +51,8 @@ int		hex_get_nbr(int fd, int size)
 
 	nbr = 0;
 	i = -1;
-	while (++i < size) {
+	while (++i < size)
+	{
 		nbr *= 0x100;
 		read(fd, &buf, 1);
 		nbr += buf;
