@@ -8,7 +8,8 @@ SRC			=	corewar.c \
 				hex.c \
 				champs.c \
 				heads.c \
-				exit.c
+				exit.c \
+				cycle.c
 OBJ			=	$(SRC:%.c=%.o)
 
 all: $(NAME)

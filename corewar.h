@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:11:02 by adavis            #+#    #+#             */
-/*   Updated: 2019/11/01 19:38:25 by adavis           ###   ########.fr       */
+/*   Updated: 2019/11/02 14:58:28 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ void				heads_print(t_corewar *cw);
 void				exit_null_block();
 void				exit_header();
 void				exit_open(char *file);
+
+void				cycle(t_corewar *cw);
 
 #endif
