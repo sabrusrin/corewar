@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:11:02 by adavis            #+#    #+#             */
-/*   Updated: 2019/11/13 14:27:23 by adavis           ###   ########.fr       */
+/*   Updated: 2019/12/07 15:02:02 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ typedef struct		s_champ {
 
 typedef struct		s_head
 {
-	int				id;
-	int				champ_id;
-	int				carry;
-	int				op_code;
-	int				last_live;
-	int				to_op;
-	int				pos;
-	int				to_next;
-	unsigned int	*regs;
+	int				id;				// id каретки
+	int				champ_id;		// id чемпиона
+	char			carry;			// флаг carry
+	int				op_code;		// код операции, на которой стоит каретка
+	int				last_live;		// номер цикла последнего выполнения live
+	int				to_op;			// количество циклов до выполнения операции
+	int				pos;			// текущая позиция
+	int				to_next;		// сколько байт пройти к следующей операции
+	unsigned int	*regs;			// регистры
 	struct s_head	*next;
 }					t_head;
 

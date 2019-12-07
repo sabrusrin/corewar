@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 13:47:36 by adavis            #+#    #+#             */
-/*   Updated: 2019/11/02 15:10:58 by adavis           ###   ########.fr       */
+/*   Updated: 2019/12/07 15:03:21 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		champs_greet(t_corewar *cw)
 	return (0);
 }
 
+// TODO: Выстроить список в соответствии с флагом -n
 int		champs_init(t_corewar *cw, int ac, char **av)
 {
 	int		i;

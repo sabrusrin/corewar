@@ -6,7 +6,7 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 15:08:20 by adavis            #+#    #+#             */
-/*   Updated: 2019/11/02 15:10:47 by adavis           ###   ########.fr       */
+/*   Updated: 2019/12/07 14:52:06 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		heads_init(t_corewar *cw)
 		heads->to_next = -1;
 		heads->pos = i * (MEM_SIZE / cw->champs_cnt);
 		heads->next = tmp;
-		heads->regs = malloc(sizeof(int) * REG_NUMBER);
+		heads->regs = malloc(REG_SIZE * REG_NUMBER);
 		heads->regs[0] = -heads->id;
 	}
 	cw->heads = heads;
