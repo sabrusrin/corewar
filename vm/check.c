@@ -6,13 +6,13 @@
 /*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 17:08:46 by adavis            #+#    #+#             */
-/*   Updated: 2019/12/07 15:04:13 by adavis           ###   ########.fr       */
+/*   Updated: 2019/12/07 15:07:09 by adavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-// TODO: Написать это
+// TODO: Написать это !!
 int		check(t_corewar *cw)
 {
 	t_head	*head;
