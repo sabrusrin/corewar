@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Vim files
+*.sw*
+
+# Macos file system
+.DS_Store

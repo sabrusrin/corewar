@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chermist <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: chermist <chermist@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/27 22:25:22 by chermist          #+#    #+#              #
-#    Updated: 2019/12/07 00:19:43 by chermist         ###   ########.fr        #
+#    Updated: 2020/06/12 22:44:44 by chermist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,17 +145,21 @@ FLAGS = -Wall -Wextra -Werror -Ofast
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@printf "\033[1;32m$(NAME) was built\033[0m"
 
 %.o: %.c
-	clang $(FLAGS) $(INC) -c $< -o $@
+	@clang $(FLAGS) $(INC) -c $< -o $@
+	@printf "\033[0;32mCompiling... %-21s => %-21s\r\033[0m" $< $@
 
 
 clean:
-		rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@echo "\033[0;31mlibft object files removed\033[0m"
 
 fclean: clean
-		rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[1;31mRemoved $(NAME)\033[0m"
 
 re: fclean all
