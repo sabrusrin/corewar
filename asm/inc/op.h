@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/06/14 17:25:00 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/14 17:36:32 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ typedef struct					s_header
 typedef struct					s_op
 {
 	char						*name;
-	uint8_t						args_number;
-	uint8_t						args_types[3];
-	int							op_code;
-	int							wait_cycles;
+	unsigned char				args_number;
+	unsigned char				args_types[3];
+	unsigned char				op_code;
+	unsigned int				wait_cycles;
 	char						*description;
-	uint8_t						byte_type;
-	uint8_t						t_dir_short;
+	unsigned char				byte_type;
+	unsigned char				t_dir_short;
 }								t_op;
 
 extern t_op						g_op_tab[17];
