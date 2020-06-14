@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/13 17:52:32 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/14 17:39:53 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdlib.h>
 
 # include "libft.h"
+
+# include "op.h"
 
 void assemble(char *filename);
 
