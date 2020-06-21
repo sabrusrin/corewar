@@ -6,20 +6,48 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:14:01 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/13 17:49:40 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/21 22:06:10 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int main(int ac, char **av)
+void read_champion(t_parser *parse_struct)
 {
-	if (ac == 2)
+	char	*line;
+	char	*line_copy;
+	int		ret;
+
+	line = NULL;
+	while ((ret = get_next_line(parse_struct->fd, &line)) > 0)
 	{
-		ft_printf("asm");
+		if (ret == -1)
+			throw_error("error: Failed to read file");
+
+		line_copy = ft_strdup(line);
+		ft_vpush_back(parse_struct->buffer, &line_copy, sizeof(char**));
+		ft_strdel(&line);
 	}
-	else
-		ft_printf("usage:\n\t- ./asm *.s\n\t- ./asm *.cor");
-	
-	return (0);
+	ft_strdel(&line);
+	if (parse_struct->buffer->size == 0)
+		throw_error("error: Empty champion file");
+	if (close(parse_struct->fd) < 0)
+		throw_error("error: Failed to close file");
+}
+
+int assemble(const char *filename)
+{
+	t_parser *parse_struct;
+
+	parse_struct = initialize(filename);
+
+	read_champion(parse_struct);
+	tokenize(parse_struct);
+
+	// validate tokens
+
+	// translate
+
+	free_parse_struct(&parse_struct);
+	return (1);
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 12:55:29 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/21 22:10:14 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/21 14:53:36 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/21 16:50:35 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	ft_strdel(char **as)
+void parse_champion(t_parser *parser_struct)
 {
-	if (!as && !*as)
-		return ;
-	free(*as);
-	*as = NULL;
+	if ()
 }

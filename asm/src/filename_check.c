@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   filename_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 12:55:29 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/21 22:10:14 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/20 16:07:09 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/20 17:18:27 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	ft_strdel(char **as)
+int check_filename(const char *filename, const char *suffix)
 {
-	if (!as && !*as)
-		return ;
-	free(*as);
-	*as = NULL;
+	int name_len;
+	int suffix_len;
+
+	if (filename && suffix)
+	{
+		if (ft_strstr(filename, suffix))
+		{
+			name_len = ft_strlen(filename);
+			suffix_len = ft_strlen(suffix) - 1;
+			if (ft_strcmp(filename + (name_len - suffix_len), suffix))
+				return (1);
+		}
+	}
+
+	return (0);
 }

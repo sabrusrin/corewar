@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 12:55:29 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/21 22:10:14 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/21 13:51:19 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/21 13:59:55 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-void	ft_strdel(char **as)
+void throw_error(char *err)
 {
-	if (!as && !*as)
-		return ;
-	free(*as);
-	*as = NULL;
+	if (errno == 0)
+	{
+		ft_putendl_fd(err, 2);
+	}
+	else
+	{
+		perror(err);
+	}
+
+	exit(1);
 }
