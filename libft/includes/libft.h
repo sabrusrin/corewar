@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:22:05 by chermist          #+#    #+#             */
-/*   Updated: 2019/11/21 19:02:15 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/24 20:00:47 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 
 char				*ft_strdup(const char *s1);
+char				*ft_strndup(const char *s1, size_t n);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnew(size_t size);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));

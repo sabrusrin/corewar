@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/24 19:50:42 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/24 20:00:02 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	size_t i;
-	size_t lsrc;
+	size_t	len;
+	char	*cp;
+	char	*pcp;
 
-	if (src && dst)
+	pcp = NULL;
+	if (s1)
 	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
-		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
-		}
+		len = ft_strlen(s1);
+		if (len > n)
+			len = n;
+		if (!(cp = ft_strnew(len)))
+			return (pcp);
+		pcp = cp;
+		while (len--)
+			*cp++ = *s1++;
 	}
-
-	return (dst);
+	return (pcp);
 }

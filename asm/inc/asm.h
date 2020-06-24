@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/21 22:01:38 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/24 18:52:05 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int					assemble(const char *filename);
 */
 int					check_filename(const char *filename, const char *suffix);
 void				throw_error(char *err);
+void				throw_error_tokenizing(char *err, int line, int col);
 
 /*
 ** initialize function initializes t_parser struct
