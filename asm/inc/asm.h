@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:52:05 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/28 20:21:45 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct		s_parser
 	char			*name;
 	char			*comment;
 	char			*byte_code;
-	t_token			*token;
 	t_vec			*buffer;
 	t_vec			*tokens;
 }					t_parser;
@@ -55,6 +54,7 @@ typedef struct		s_token
 }					t_token;
 
 int					assemble(const char *filename);
+void				tokenize(t_parser *parse_struct);
 
 /*
 ** helper functions
