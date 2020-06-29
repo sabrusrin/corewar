@@ -19,7 +19,7 @@
 t_bool	read_magic_header(t_var *v)
 {
 	unsigned int	mag;
-	
+
 	v->r = read(v->fd, &mag, 4);
 	if (mag != 0xf383ea00 || v->r < 1)
 	{
@@ -37,7 +37,7 @@ t_bool	read_magic_header(t_var *v)
 void	read_champ_name(t_var *v, t_header *f)
 {
 	int i;
-	
+
 	v->r = read(v->fd, f->prog_name, PROG_NAME_LENGTH);
 	f->prog_name[PROG_NAME_LENGTH] = '\0';
 	i = 0;
@@ -50,7 +50,7 @@ void	read_champ_name(t_var *v, t_header *f)
 		}
 		i++;
 	}
-	ft_printf("\033[0;31m.name: %s\033[0m\n", f->prog_name);
+	ft_printf(".name \"%s\"\n", f->prog_name);
 }
 
 /*
@@ -70,14 +70,13 @@ t_bool	read_null(t_var *v)
 }
 
 /*
-**	read champ size and assure that it's no more than 4096/6 ~ 682 
+**	read champ size and assure that it's no more than 4096/6 ~ 682
 */
 
 t_bool	read_champ_size(t_var *v)
 {
 	v->r = read(v->fd, &v->champ_size, 4);
 	v->champ_size = reverse_byte_by_byte_int(v->champ_size);
-	// printf("size = %u\n", v->champ_size);
 	if (v->champ_size >= CHAMP_MAX_SIZE)
 	{
 		ft_putendl_fd("ERROR: instructions for champion exceed 682 bytes.", 2);
@@ -93,7 +92,7 @@ t_bool	read_champ_size(t_var *v)
 void	read_champ_comment(t_var *v, t_header *f)
 {
 	int i;
-	
+
 	v->r = read(v->fd, f->comment, COMMENT_LENGTH);
 	f->comment[COMMENT_LENGTH] = '\0';
 	i = 0;
@@ -106,5 +105,5 @@ void	read_champ_comment(t_var *v, t_header *f)
 		}
 		i++;
 	}
-	ft_printf("\033[0;31m.comment: %s\033[0m\n", f->comment);
+	ft_printf(".comment \"%s\"\n", f->comment);
 }

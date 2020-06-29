@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   test_disassembly.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: btrifle <btrifle@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/13 17:14:01 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/13 17:49:40 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/18 23:54:06 by btrifle           #+#    #+#             */
+/*   Updated: 2020/06/24 19:10:11 by btrifle          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "disasm.h"
 
-int	main(int ac, char **av)
+/*
+** s_file is t_header exempliar
+*/
+
+int	main(int argc, char **argv)
 {
-	if (ac == 2)
-	{
-		ft_printf("asm");
-	}
-	else
-		ft_printf("usage:\n\t- ./asm *.s\n\t- ./asm *.cor");
+	t_header s_file;
+
+	open_close_s_file(argc, argv, &s_file);
 	return (0);
 }

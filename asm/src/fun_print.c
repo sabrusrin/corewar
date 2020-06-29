@@ -12,45 +12,36 @@
 
 #include "disasm.h"
 
-uint reverseBits(uint num) 
-{
-	uint  NO_OF_BITS = sizeof(num) * 8; 
-	uint reverse_num = 0, i, temp; 
-  
-	for (i = 0; i < NO_OF_BITS; i++) 
-	{ 
-		temp = (num & (1 << i)); 
-		if(temp) 
-			reverse_num |= (1 << ((NO_OF_BITS - 1) - i)); 
-	} 
-   
-	return reverse_num; 
-} 
-
-
 /*
 ** this function reverses int byte by byte
 ** thus, big endian -> little endian
 */
 
-
-uint 	reverse_byte_by_byte_int(uint num)
+t_uint	reverse_byte_by_byte_int(t_uint num)
 {
-	uint	rev;
+	t_uint	rev;
 
-	rev = ((num & 0xFF) << 24) | ((num & 0xFF00) << 8) | ((num & 0xFF0000) >> 8) | ((num & 0xFF000000) >> 24);
+	rev = ((num & 0xFF) << 24) | ((num & 0xFF00) << 8) |
+	((num & 0xFF0000) >> 8) | ((num & 0xFF000000) >> 24);
 	return (rev);
 }
 
+/*
+** this function reverses bYtes for short type
+*/
 
-short 	reverse_byte_by_byte_short(short num)
+short	reverse_byte_by_byte_short(short num)
 {
-	return ((num << 8) | (num >> 8));	
+	return ((num << 8) | (num >> 8));
 }
 
-void	print_binary_uint(uint n)
+/*
+** this function prints uint in binary form
+*/
+
+void	print_binary_uint(t_uint n)
 {
-	uint mask;
+	t_uint mask;
 
 	mask = 1 << 31;
 	while (mask)
@@ -64,9 +55,13 @@ void	print_binary_uint(uint n)
 	printf("\n");
 }
 
-void	print_binary_uchar(uchar n)
+/*
+** this function prints uchar in binary form
+*/
+
+void	print_binary_uchar(t_uchar n)
 {
-	uchar mask;
+	t_uchar mask;
 
 	mask = 1 << 7;
 	while (mask)
@@ -78,18 +73,4 @@ void	print_binary_uchar(uchar n)
 		mask >>= 1;
 	}
 	write(1, "\n", 1);
-}
-
-/*
-** free the line if allocated and return whatever is in ret
-*/
-
-t_bool	free_line(char **line, t_bool ret)
-{
-	if (line && *line)
-	{
-		free(*line);
-		*line = NULL;
-	}
-	return (ret);
 }
