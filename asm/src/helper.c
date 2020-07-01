@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filename_check.c                                   :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 16:07:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 14:37:24 by chermist         ###   ########.fr       */
+/*   Created: 2020/07/01 15:11:22 by chermist          #+#    #+#             */
+/*   Updated: 2020/07/01 15:30:04 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int check_filename(const char *filename, const char *suffix)
+int string_len(char **carriage, char delim)
 {
-	int name_len;
-	int suffix_len;
+	int	i;
 
-	if (filename && suffix)
+	i = 0;
+	while ((*carriage)[i] && (*carriage)[i] != delim)
+		i++;
+	if (i == 0)
+		return (0);
+	return (i);
+}
+
+void comment_skip(t_parser *parse_struct, char **carriage)
+{
+	while (**carriage)
 	{
-		if (ft_strstr(filename, suffix))
-		{
-			name_len = ft_strlen(filename);
-			suffix_len = ft_strlen(suffix) - 1;
-			if (ft_strcmp(filename + (name_len - suffix_len), suffix))
-				return (1);
-		}
+		(*carriage)++;
+		parse_struct->col++;
 	}
-
-	return (0);
 }

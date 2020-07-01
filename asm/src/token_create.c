@@ -1,0 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_create.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/01 14:57:16 by chermist          #+#    #+#             */
+/*   Updated: 2020/07/01 15:31:23 by chermist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "asm.h"
+
+t_token *token_create(t_parser *parse_struct, char *type, char *content)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	if (token == NULL)
+		throw_error("error: Can't allocate memory");
+	token->line = parse_struct->line;
+	token->col = parse_struct->col;
+	if (!(token->type = ft_strdup(type)))
+		throw_error("error: Can't allocate memory");
+	if (!(token->content = ft_strdup(content)))
+		throw_error("error: Can't allocate memory");
+
+	return token;
+}
+
+void separator_token_create(t_parser *parse_struct, char **carriage)
+{
+	t_token	*token;
+
+	token = token_create(parse_struct, "SEPARATOR", ",");
+	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	(*carriage)++;
+	parse_struct->col++;
+}
+
+void direct_label_token_create(t_parser *parse_struct, char **carriage)
+{
+	t_token	*token;
+	char	*content;
+	int		i;
+
+	*carriage += 2;// saving only instruction
+	i = 0;
+	while ((*carriage)[i] && ft_strchr(LABEL_CHARS, (*carriage)[i]))
+		i++;
+	if (i > 0)
+	{
+		if (!(content = ft_strndup(*carriage, i)))
+			throw_error("error: Can't allocate memory");
+		token = token_create(parse_struct, "DIRECT_LABEL", content);
+		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+		ft_strdel(&content);
+		(*carriage) += i;
+		parse_struct->col += i;
+	}
+}
+
+void direct_token_create(t_parser *parse_struct, char **carriage)
+{
+	t_token	*token;
+	char	*content;
+	int		i;
+
+	(*carriage)++;
+	i = 0;
+	while ((*carriage)[i] && (*carriage)[i] == '-')
+		i++;
+	while ((*carriage)[i] && ft_isdigit((*carriage)[i]))
+		i++;
+	if (!(content = ft_strndup(*carriage, i)))
+		throw_error("error: Can't allocate memory");
+	token = token_create(parse_struct, "DIRECT", content);
+	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	ft_strdel(&content);
+	(*carriage) += i;
+	parse_struct->col += i;
+}
