@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 14:16:21 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 15:01:57 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/01 19:20:07 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_parser	*initialize(const char *filename)
 
 	parse_struct->line = 0;
 	parse_struct->col = 0;
+	parse_struct->name = NULL;
+	parse_struct->comment = NULL;
 	if (!(parse_struct->buffer = ft_vnew(500, sizeof(char**))))
 		throw_error("error: Can't initialize vector");
 	if (!(parse_struct->tokens = ft_vnew(64, sizeof(t_token**))))

@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:56:38 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 15:33:05 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:30:17 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void champ_name_comment_token_create(t_parser *parse_struct, char **carriage)
 
 	if (ft_strnstr(*carriage, NAME_CMD_STRING, 5))
 	{
-		token = token_create(parse_struct, "NAME", NAME_CMD_STRING);
+		token = token_create(parse_struct, COMMAND, NAME_CMD_STRING);
 		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 		*carriage += 5;
 		parse_struct->col += 5;
 	}
 	else if (ft_strnstr(*carriage, COMMENT_CMD_STRING, 8))
 	{
-		token = token_create(parse_struct, "COMMENT", COMMENT_CMD_STRING);
+		token = token_create(parse_struct, COMMAND, COMMENT_CMD_STRING);
 		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 		*carriage += 8;
 		parse_struct->col += 8;
@@ -47,7 +47,7 @@ void string_token_create(t_parser *parse_struct, char **carriage)
 	{
 		if (!(string = ft_strndup(*carriage, len)))
 			throw_error("error: Can't allocate memory");
-		token = token_create(parse_struct,"STRING", string);
+		token = token_create(parse_struct, STRING, string);
 		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 		ft_strdel(&string);
 		*carriage += len + 1;
@@ -78,6 +78,8 @@ void parse_token(t_parser *parse_struct, char **carriage)
 			ft_isdigit(*(*carriage + 2))) || ft_isdigit(*(*carriage + 1))))
 			direct_token_create(parse_struct, carriage);
 	}
+	else if (**carriage == LABEL_CHAR)
+		label_token_create(parse_struct, carriage);
 	else if (ft_strchr(LABEL_CHARS, **carriage))
 	{
 		label_instr_reg_token_create(parse_struct, carriage);

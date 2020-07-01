@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:14:01 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 15:34:43 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/01 18:08:25 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,8 @@ int assemble(const char *filename)
 
 	read_champion(parse_struct);
 	tokenize(parse_struct);
-
-// ---------------------------------------------------------------------------
-// tokenize test
-	int i;
-	for (i = 0; i < parse_struct->tokens->size; i++)
-	{
-		t_token *token;
-		token = *(t_token**)(ft_vat(parse_struct->tokens, i));
-		ft_printf("line: %d; col: %d; type: %s; content: %s\n", token->line, token->col, token->type, token->content);
-	}
-// tokenize test
-// ---------------------------------------------------------------------------
-
 	// validate tokens
+	parse_tokens(parse_struct);
 
 	// translate
 
