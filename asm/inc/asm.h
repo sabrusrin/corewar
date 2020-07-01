@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 20:00:04 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/02 01:20:05 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum
 	LABEL,
 	INDIRECT_LABEL,
 	INSTRUCTION,
-	REGISTER
+	REGISTER,
+	END_LINE
 } t_type;
 
 typedef struct		s_response
@@ -47,13 +48,14 @@ typedef struct		s_response
 
 typedef struct		s_parser
 {
+	int				iter;
 	int				line;	
 	int				col;
 	int				fd;
 	char			*name;
 	char			*comment;
-	char			*byte_code;
 	t_token			*token;
+	t_vec			*byte_code;
 	t_vec			*buffer;
 	t_vec			*tokens;
 }					t_parser;

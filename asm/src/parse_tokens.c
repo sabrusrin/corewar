@@ -6,35 +6,80 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 14:53:36 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 19:36:12 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/02 01:12:16 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void parse_token(t_parser *parse_struct)
+void save_name(t_parser *parse_struct)
+{
+	t_token	*t;
+
+	t = *(t_token**)ft_vat(parse_struct->tokens, ++(parse_struct->iter));
+	if (t->type == STRING)
+	{
+		if (!(parse_struct->name = ft_strdup(t->content)))
+			throw_error("error: Can't allocate memory");
+		if (ft_strlen(parse_struct->name > PROG_NAME_LENGTH))
+			throw_error_tokenizing("program name is too long", t->line, t->col);
+		parse_struct->iter++;
+		parse_struct->token = *(t_token**)ft_vat(parse_struct->tokens, \
+														++(parse_struct->iter));
+		if (parse_struct->token->type != END_LINE)
+			throw_error_tokenizing("missing end line", t->line, t->col);
+	}
+	else
+		throw_error_tokenizing("incorrect token type", t->line, t->col);
+}
+
+void save_comment(t_parser *parse_struct)
+{
+	t_token	*t;
+
+	t = *(t_token**)ft_vat(parse_struct->tokens, ++(parse_struct->iter));
+	if (t->type == STRING)
+	{
+		if (!(parse_struct->comment = ft_strdup(t->content)))
+			throw_error("error: Can't allocate memory");
+		if (ft_strlen(parse_struct->comment > COMMENT_LENGTH))
+			throw_error_tokenizing("comment is too long", t->line, t->col);
+		parse_struct->iter++;
+		parse_struct->token = *(t_token**)ft_vat(parse_struct->tokens, \
+														++(parse_struct->iter));
+		if (parse_struct->token->type != END_LINE)
+			throw_error_tokenizing("missing end line", t->line, t->col);
+	}
+	else
+		throw_error_tokenizing("incorrect token type", t->line, t->col);
+}
+
+void parse_info(t_parser *parse_struct)
 {
 	t_token	*token;
 
 	token = parse_struct->token;
-	if (ft_strcmp(NAME_CMD_STRING, token->content) && !parse_struct->name)
+	if (token->type == COMMAND && !parse_struct->name && \
+											(NAME_CMD_STRING, token->content))
 		save_name(parse_struct);
-	else if (ft_strcmp(NAME_CMD_STRING, token->content) && parse_struct->name)
-		throw_error_tokenizing("multiple names", token->line, token->col);
-	if (ft_strcmp(COMMENT_CMD_STRING, token->content) && !parse_struct->comment)
-		save_comment();
+	else if (token->type == COMMAND && !parse_struct->comment && \
+								ft_strcmp(COMMENT_CMD_STRING, token->content))
+		save_comment(parse_struct);
+	else 
+		throw_error_tokenizing("incorrect token", token->line, token->col);
 }
 
-void parse_tokens(t_parser *parse_struct)
+void parse_tokens(t_parser *parse)
 {
-	int		i;
-
-	i = 0;
-	while (i < parse_struct->tokens->size)
+	parse->iter = 0;
+	while (!parse->name && !parse->comment)
 	{
-		parse_struct->token = *(t_token**)ft_vat(parse_struct->tokens, i);
-		parse_token(parse_struct);
-		if (parse_struct->name && parse_struct->comment)
-			break ;
+		parse->token = *(t_token**)ft_vat(parse->tokens, parse->iter);
+		parse_info(parse);
+		parse->iter++;
+	}
+	while (parse->iter < parse->tokens->size)
+	{
+		
 	}
 }

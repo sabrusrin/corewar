@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:56:38 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 20:30:17 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/02 01:16:45 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,15 @@ void parse_token(t_parser *parse_struct, char **carriage)
 
 void tokenize(t_parser *parse_struct)
 {
+	t_token	*token;
 	char	*line;
+	char	*tmp;
 
 	while (parse_struct->line < parse_struct->buffer->size)
 	{
 		parse_struct->col = 0;
 		line = *((char**)ft_vat(parse_struct->buffer, parse_struct->line));
+		tmp = line;
 		while (*line != '\0')
 		{
 			if (*line == ' ' || *line == '\t')
@@ -104,6 +107,10 @@ void tokenize(t_parser *parse_struct)
 			else
 				parse_token(parse_struct, &line);
 		}
+		token = token_create(parse_struct, END_LINE, "\n");
+		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+		ft_strdel(&line);
 		parse_struct->line++;
 	}
+	ft_vdel(&(parse_struct->buffer));
 }
