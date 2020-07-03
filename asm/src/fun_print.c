@@ -17,7 +17,7 @@
 ** thus, big endian -> little endian
 */
 
-t_uint	reverse_byte_by_byte_int(t_uint num)
+t_uint		reverse_byte_by_byte_int(t_uint num)
 {
 	t_uint	rev;
 
@@ -30,7 +30,7 @@ t_uint	reverse_byte_by_byte_int(t_uint num)
 ** this function reverses bYtes for short type
 */
 
-short	reverse_byte_by_byte_short(short num)
+t_ushort	reverse_byte_by_byte_short(t_ushort num)
 {
 	return ((num << 8) | (num >> 8));
 }
@@ -39,7 +39,7 @@ short	reverse_byte_by_byte_short(short num)
 ** this function prints uint in binary form
 */
 
-void	print_binary_uint(t_uint n)
+void		print_binary_uint(t_uint n)
 {
 	t_uint mask;
 
@@ -59,7 +59,7 @@ void	print_binary_uint(t_uint n)
 ** this function prints uchar in binary form
 */
 
-void	print_binary_uchar(t_uchar n)
+void		print_binary_uchar(t_uchar n)
 {
 	t_uchar mask;
 
@@ -70,6 +70,28 @@ void	print_binary_uchar(t_uchar n)
 			write(1, "1", 1);
 		else
 			write(1, "0", 1);
+		mask >>= 1;
+	}
+	write(1, "\n", 1);
+}
+
+/*
+** this function prints short in binary form
+*/
+
+void		print_binary_short(short n)
+{
+	unsigned short mask;
+
+	mask = 1 << 15;
+	while (mask)
+	{
+		if (n & mask)
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
+		if (mask == 256)
+			write(1, " ", 1);
 		mask >>= 1;
 	}
 	write(1, "\n", 1);

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+LIGHT_RED='\033[1;31m'
+LIGHT_GREEN='\033[1;32m'
+LIGHT_BLUE='\033[1;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+LIGHT_BLUE='\033[1;34m'
+WHITE_B='\033[1m'
+NC='\033[0m' # No Color
+
+printf "		  ${LIGHT_BLUE}______________________\n"
+printf "		  | Check disassembler |${NC}\n"
+printf "		  ${LIGHT_BLUE}______________________\n"
+
+printf "${YELLOW}Recompile the project${NC}\n"
+make re
+
+DIR="champ_examples/"
+DIS="_dis"
+EXT_S=".s"
+EXT_COR=".cor"
+MD5="md5_"
+ORIG="_or"
+MY="_my"
+FILE_S="turtle"
+
+for filename in ${DIR}*.s; do
+	FILE_S=$(basename -- "$filename")
+	FILE_S="${FILE_S%.*}"
+
+	./or_asm ${DIR}${FILE_S}${EXT_S}
+	./disasm ${DIR}${FILE_S}${EXT_COR} > ${DIR}${FILE_S}${DIS}${EXT_S}
+	./or_asm ${DIR}${FILE_S}${DIS}${EXT_S}
+
+	md5 ${DIR}${FILE_S}${EXT_COR} | sed 's|.*=||' > ${DIR}${MD5}${FILE_S}${ORIG}
+	md5 ${DIR}${FILE_S}${DIS}${EXT_COR} | sed 's|.*=||' > ${DIR}${MD5}${FILE_S}${MY}
+	var=$(diff ${DIR}${MD5}${FILE_S}${ORIG} ${DIR}${MD5}${FILE_S}${MY})
+	if [ -z "$var" ]
+	then
+		printf "${LIGHT_GREEN}${FILE_S}${EXT_S}:${GREEN} OK${NC}\n"
+	else
+		printf "${LIGHT_RED}${FILE_S}${EXT_S}:${RED} KO${NC}\n"
+	fi
+	rm ${DIR}${FILE_S}${EXT_COR}
+	rm ${DIR}${FILE_S}${DIS}${EXT_COR}
+	rm ${DIR}${MD5}${FILE_S}${MY}
+	rm ${DIR}${MD5}${FILE_S}${ORIG}
+	rm ${DIR}${FILE_S}${DIS}${EXT_S}
+done
