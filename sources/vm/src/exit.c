@@ -3,29 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adavis <adavis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 19:34:11 by adavis            #+#    #+#             */
-/*   Updated: 2019/11/01 19:40:28 by adavis           ###   ########.fr       */
+/*   Created: 2020/01/04 11:31:06 by lkarlon-          #+#    #+#             */
+/*   Updated: 2020/08/16 20:08:41 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include <stdlib.h>
 
-void	exit_null_block(void)
+int		exit_fail(t_vm *v, t_param *param_tab, int free_list)
 {
-	ft_printf("NULL block error\n");
-	exit(-1);
-}
-
-void	exit_header(void)
-{
-	ft_printf("Header error\n");
-	exit(-1);
-}
-
-void	exit_open(char *file)
-{
-	ft_printf("Couldn't open %s\n", file);
-	exit(-1);
+	if (param_tab)
+		free(param_tab);
+	if (v)
+	{
+		if (free_list)
+			free_proc_list(v);
+		free(v);
+	}
+	exit(EXIT_FAILURE);
+	return (-1);
 }
