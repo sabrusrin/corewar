@@ -6,11 +6,10 @@
 /*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 13:43:01 by lkarlon-          #+#    #+#             */
-/*   Updated: 2020/08/02 19:15:19 by lkarlon-         ###   ########.fr       */
+/*   Updated: 2020/09/03 21:48:52 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "corewar.h"
 
 static void	op_table(t_vm *v)

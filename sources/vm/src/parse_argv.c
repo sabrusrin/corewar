@@ -6,7 +6,7 @@
 /*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 18:12:56 by lkarlon-          #+#    #+#             */
-/*   Updated: 2020/08/10 23:40:19 by lkarlon-         ###   ########.fr       */
+/*   Updated: 2020/09/05 21:07:34 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_type_argv	*ft_parse_init(t_vm *v)
 
 	if (!(type = (t_type_argv *)malloc(sizeof(t_type_argv) * 6)))
 		exit_fail(v, NULL, 0);
-	type[0] = (t_type_argv){"-visu", init_visu};
+//	type[0] = (t_type_argv){"-visu", init_visu};
 	type[1] = (t_type_argv){"-v", verbose};
 	type[2] = (t_type_argv){"-dump", dump};
 	type[3] = (t_type_argv){"-d", dirty};

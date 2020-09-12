@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: chermist <chermist@student.42.fr>          +#+  +:+       +#+         #
+#    By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/27 22:25:22 by chermist          #+#    #+#              #
-#    Updated: 2020/06/12 22:44:44 by chermist         ###   ########.fr        #
+#    Updated: 2020/09/03 22:17:20 by lkarlon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MEM_F = ft_memset.c \
 		ft_memdel.c \
 		ft_arrdel.c \
 		ft_realloc.c \
+		ft_write_buff.c
 
 STR_F = ft_strlen.c \
 		ft_strdup.c \
@@ -63,7 +64,8 @@ CHR_F = ft_atoi.c \
 		ft_isprint.c \
 		ft_isspace.c \
 		ft_toupper.c \
-		ft_tolower.c
+		ft_tolower.c \
+		ft_lltoa_base.c
 
 PUT_F = ft_putchar.c \
 		ft_putstr.c \
@@ -88,7 +90,8 @@ LST_F =	ft_lstnew.c \
 
 MATH_F = ft_pow.c \
 		 ft_sqrt.c \
-		 ft_fabs.c
+		 ft_fabs.c \
+		 ft_abs.c
 
 VEC_F = ft_vnew.c \
 		ft_vresize.c \

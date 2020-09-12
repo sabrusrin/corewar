@@ -6,7 +6,7 @@
 /*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 17:19:34 by lkarlon-          #+#    #+#             */
-/*   Updated: 2020/08/16 20:11:57 by lkarlon-         ###   ########.fr       */
+/*   Updated: 2020/09/03 21:59:25 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int		op_lldi(t_vm *v, t_process *proc, t_param *params)
 	return (step);
 }
 
-int		op_lfork(t_vm *v, t_process *proc, t_param *params, t_visu *sdl)
+int		op_lfork(t_vm *v, t_process *proc, t_param *params)
 {
 	t_plist	*dup;
 
 	if (!(dup = (t_plist*)malloc(sizeof(t_plist))))
-		return (exit_fail(v, sdl, params, 1));
+		return (exit_fail(v, params, 1));
 	ft_memcpy(&dup->proc, proc, sizeof(t_process));
 	pre_op(v, proc, &params[0], TWO_BYTES);
 	dup->proc.pc = get_offset(dup->proc.pc + params[0].val);

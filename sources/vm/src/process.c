@@ -6,11 +6,11 @@
 /*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 14:37:55 by lkarlon-          #+#    #+#             */
-/*   Updated: 2020/08/10 23:13:06 by lkarlon-         ###   ########.fr       */
+/*   Updated: 2020/09/03 21:49:46 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/corewar.h"
+#include "corewar.h"
 #include "libft.h"
 
 static t_process	new_proc(void)

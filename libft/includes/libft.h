@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:22:05 by chermist          #+#    #+#             */
-/*   Updated: 2019/11/21 19:02:15 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/03 22:08:18 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 void				*ft_arrdel(void **res);
 void				*ft_realloc(void *ptr, size_t prevsz, size_t newsz);
+char				*ft_write_buff(char *line, int *i);
 
 size_t				ft_strlen(const char *s);
 char				*ft_strcpy(char *dst, const char *src);
@@ -94,6 +95,8 @@ int					ft_wcount(char const *s, char c);
 char				*ft_itoa(int n);
 int					ft_atoi(const char *str);
 int					ft_atoi_move(char **str);
+char				*ft_lltoa_base(long long n, int base);
+
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
@@ -106,5 +109,6 @@ void				ft_lstappend(t_list *alst, t_list *new);
 int					ft_pow(int x, int power);
 int					ft_sqrt(int x);
 float				ft_fabs(float x);
+long long			ft_abs(long long a);
 
 #endif

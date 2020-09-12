@@ -6,7 +6,7 @@
 #    By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/09 13:28:55 by lkarlon-          #+#    #+#              #
-#    Updated: 2020/08/30 10:58:27 by lkarlon-         ###   ########.fr        #
+#    Updated: 2020/08/31 21:08:25 by lkarlon-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ HEAD_PATH			:=	./includes
 LIB_PATH			:=	./libft
 
 SRC_PATH_ASM		:=	$(SRC_PATH)/asmа
-SRC_PATH_VM			:=	$(SRC_PATH)/vm
+SRC_PATH_VM			:=	$(SRC_PATH)/vm/src
 
 CFLAGS				:=	-Wall -Wextra -Werror 
 
@@ -115,11 +115,11 @@ $(ASM): $(LIBFT) $(OBJ_ASM) $(HEAD_ASM)
 	@$(CC) $(CFLAGS) $(LIBS_ASM) $(CPPFLAGS) $(OBJ_ASM) -o $@
 	@echo "$(GREEN)[$@ Compiled]$(DEFAULT)"
 
-$(VM): $(LIBFT) $(OBJ_VM) $(HEAD_VM)
+$(VM): $(LIBFT) $(OBJ_VM)
 	@$(CC) $(CFLAGS) $(LIBS_VM) $(CPPFLAGS) $(OBJ_VM) -o $@
 	@echo "$(GREEN)[$@ Compiled]$(DEFAULT)"
 
-$(OBJ_VM): %.o: %.c $(HEAD_VM)
+$(OBJ_PATH)/%.o: $(SRC_PATH_VM)/%.c $(HEAD_VM)
 	@$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 	#$(CC) $(CFLAGS) -o $@ -c $< -I$(HEAD_VM)

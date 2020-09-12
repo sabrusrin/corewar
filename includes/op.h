@@ -6,10 +6,11 @@
 /*   By: lkarlon- <<marvin@42.fr>>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/08/02 19:23:09 by lkarlon-         ###   ########.fr       */
+/*   Updated: 2020/09/03 21:40:06 by lkarlon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef OP_H
 # define OP						  1
 # define OCP					  1
 
@@ -75,4 +76,6 @@ typedef struct		s_header
   char				    name[PROG_NAME_LENGTH + 1];
   unsigned int		prog_size;
   char				    comment[COMMENT_LENGTH + 1];
-}					        t_header;
+}				          t_header;
+
+#endif
