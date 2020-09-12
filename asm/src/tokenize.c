@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:56:38 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/02 01:16:45 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/06 23:29:29 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ void parse_token(t_parser *parse_struct, char **carriage)
 	if (**carriage == COMMAND_CHAR)
 		champ_name_comment_token_create(parse_struct, carriage);
 	else if (**carriage == '\"')
-	{
 		string_token_create(parse_struct, carriage);
-	}
 	else if (**carriage == COMMENT_CHAR || **carriage == ALT_COMMENT_CHAR)
 		comment_skip(parse_struct, carriage);
 	else if (**carriage == SEPARATOR_CHAR)
@@ -91,11 +89,11 @@ void tokenize(t_parser *parse_struct)
 	t_token	*token;
 	char	*line;
 	char	*tmp;
+	int		ret;
 
-	while (parse_struct->line < parse_struct->buffer->size)
+	while  ((ret = get_next_line(parse_struct->fd, &line)) > 0)
 	{
 		parse_struct->col = 0;
-		line = *((char**)ft_vat(parse_struct->buffer, parse_struct->line));
 		tmp = line;
 		while (*line != '\0')
 		{
@@ -109,8 +107,33 @@ void tokenize(t_parser *parse_struct)
 		}
 		token = token_create(parse_struct, END_LINE, "\n");
 		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
-		ft_strdel(&line);
+		ft_strdel(&tmp);
 		parse_struct->line++;
 	}
-	ft_vdel(&(parse_struct->buffer));
+	token = token_create(parse_struct, END, "");
+	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+
+	// while (parse_struct->line < parse_struct->buffer->size)
+	// {
+	// 	parse_struct->col = 0;
+	// 	line = *((char**)ft_vat(parse_struct->buffer, parse_struct->line));
+	// 	tmp = line;
+	// 	while (*line != '\0')
+	// 	{
+	// 		if (*line == ' ' || *line == '\t')
+	// 		{
+	// 			line++;
+	// 			parse_struct->col++;
+	// 		}
+	// 		else
+	// 			parse_token(parse_struct, &line);
+	// 	}
+	// 	token = token_create(parse_struct, END_LINE, "\n");
+	// 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	// 	ft_strdel(&tmp);
+	// 	parse_struct->line++;
+	// }
+	// token = token_create(parse_struct, END, "");
+	// ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	// ft_vdel(&(parse_struct->buffer));
 }

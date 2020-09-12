@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:57:16 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 20:58:53 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/12 15:09:56 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_token *token_create(t_parser *parse_struct, t_type type, char *content)
 	token->type = type;
 	if (!(token->content = ft_strdup(content)))
 		throw_error("error: Can't allocate memory");
+	token->arg = NULL;
 
 	return token;
 }

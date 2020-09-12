@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 15:04:21 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/01 15:22:10 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/12 15:10:38 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void label_token(t_parser *parse_struct, char **carriage, int i)
 
 	if (!(content = ft_strndup(*carriage, i)))
 		throw_error("error: Can't allocate memory");
-	token = token_create(parse_struct, "LABEL", content);
+	token = token_create(parse_struct, LABEL, content);
 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 	ft_strdel(&content);
 	(*carriage) += i + 1;
@@ -33,7 +33,7 @@ void register_token(t_parser *parse_struct, char **carriage, int i)
 
 	if (!(content = ft_strndup(*carriage, i)))
 		throw_error("error: Can't allocate memory");
-	token = token_create(parse_struct, "REGISTER", content);
+	token = token_create(parse_struct, REGISTER, content);
 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 	ft_strdel(&content);
 	(*carriage) += i;
@@ -47,7 +47,7 @@ void instruction_token(t_parser *parse_struct, char **carriage, int i)
 
 	if (!(content = ft_strndup(*carriage, i)))
 		throw_error("error: Can't allocate memory");
-	token = token_create(parse_struct, "INSTRUCTION", content);
+	token = token_create(parse_struct, INSTRUCTION, content);
 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 	ft_strdel(&content);
 	(*carriage) += i;
