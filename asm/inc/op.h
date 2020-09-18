@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/06/21 16:42:38 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/04 19:54:15 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct					s_header
 ** args_types		— types of arguments
 ** op_code			— code of operator
 ** wait_cycles		- cycles until execution
-** byte_type		— if true then op_code modifies carry (if I understand correctly)
+** byte_type		— if true then op_code modifies carry
 ** t_dir_short		— size of T_DIR, if true then short
 */
 typedef struct					s_op

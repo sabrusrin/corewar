@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:24:50 by chermist          #+#    #+#             */
-/*   Updated: 2019/11/21 19:14:52 by chermist         ###   ########.fr       */
+/*   Updated: 2020/07/02 00:32:57 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	*ft_vat(t_vec *v, size_t at)
 {
 	if (v)
 		return ((void*)&v->data[at * v->type_sz]);
-	return (0);
+	return (NULL);
 }

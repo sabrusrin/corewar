@@ -1,0 +1,208 @@
+KKKKKKKK
+|live___ARGS: 42 
+|ld___ARGS: 0 r5 
+|ld___ARGS: 0 r5 
+|zjmp___ARGS: bite 
+|sti___ARGS: r1 tirb 1 
+|ld___ARGS: 2304 r10 
+|ld___ARGS: 1 r5 
+|ld___ARGS: 0 r11 
+|ld___ARGS: 4 r3 
+|live___ARGS: 42 
+|fork___ARGS: tirop 
+|live___ARGS: 742 
+|sub___ARGS: r3 r5 r3 
+|zjmp___ARGS: top 
+|ld___ARGS: 0 r11 
+|fork___ARGS: tirvd 
+|live___ARGS: 42 
+|sti___ARGS: r10 -510 0 
+|sti___ARGS: r10 -404 0 
+|sti___ARGS: r10 -303 0 
+|sti___ARGS: r10 -202 0 
+|ld___ARGS: 0 r11 
+|zjmp___ARGS: tirf 
+|ld___ARGS: 368 r2 
+|ld___ARGS: 0 r3 
+|ld___ARGS: 4 r4 
+|live___ARGS: 1 
+|sti___ARGS: r10 -510 r2 
+|sti___ARGS: r10 -510 r3 
+|add___ARGS: r4 r5 r4 
+|add___ARGS: r3 r4 r3 
+|sub___ARGS: r2 r4 r2 
+|zjmp___ARGS: tirop 
+|ld___ARGS: 0 r11 
+|zjmp___ARGS: tirb 
+|zjmp___ARGS: infi 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|sub___ARGS: r6 r4 r6 
+|add___ARGS: r6 r6 r11 
+|ldi___ARGS: p32deb r6 r7 
+|sti___ARGS: r7 -510 r11 
+|live___ARGS: 1 
+|ld___ARGS: 0 r10 
+|sti___ARGS: r7 -250 r6 
+|zjmp___ARGS: -192 
+|zjmp___ARGS: tirvd2 
+|sti___ARGS: r1 copie 2 
+|ldi___ARGS: copie 3 r2 
+|sti___ARGS: r2 entree -4 
+|ldi___ARGS: copie -1 r2 
+|sti___ARGS: r2 entree -8 
+|sti___ARGS: r1 p32li 1 
+|sti___ARGS: r1 b0 1 
+|ld___ARGS: 0 r2 
+|ld___ARGS: 8 r3 
+|ld___ARGS: 1 r4 
+|ld___ARGS: 0 r6 
+|live___ARGS: 1 
+|sub___ARGS: r3 r4 r3 
+|zjmp___ARGS: tart 
+|fork___ARGS: b1 
+|st___ARGS: r5 r2 
+|xor___ARGS: r10 r10 r10 
+|add___ARGS: r10 r10 r10 
+|add___ARGS: r6 r6 r6 
+|ld___ARGS: 0 r10 
+|zjmp___ARGS: b0 
+|add___ARGS: r2 r4 r2 
+|add___ARGS: r6 r6 r6 
+|add___ARGS: r6 r4 r6 
+|ld___ARGS: 0 r10 
+|zjmp___ARGS: b0 
+|live___ARGS: 42 
+|ld___ARGS: 9 r3 
+|sti___ARGS: r3 p32deb -6 
+|ld___ARGS: 2 r3 
+|sti___ARGS: r3 p32deb -16 
+|ld___ARGS: 0 r3 
+|zjmp___ARGS: topd 
+|sti___ARGS: r1 l0 1 
+|sti___ARGS: r1 l1 1 
+|sti___ARGS: r1 l2 1 
+|sti___ARGS: r1 l3 1 
+|sti___ARGS: r1 l4 1 
+|sti___ARGS: r1 l5 1 
+|sti___ARGS: r1 l6 1 
+|sti___ARGS: r1 l7 1 
+|sti___ARGS: r1 l8 1 
+|sti___ARGS: r1 l9 1 
+|sti___ARGS: r1 l10 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|live___ARGS: 1 
+|zjmp___ARGS: l0 
+|zjmp___ARGS: infi 
+|live___ARGS: 0 
+|ld___ARGS: 1 r1 
+|sti___ARGS: r1 p64li 1 
+|or___ARGS: r2 r2 r2 
+|zjmp___ARGS: p64 
+|sub___ARGS: r2 r4 r2 
+|zjmp___ARGS: p32 
+|ld___ARGS: 0 r2 
+|zjmp___ARGS: infi 
+|zjmp___ARGS: tirdow 
+|ld___ARGS: 9 r3 
+|sti___ARGS: r3 fin -6 
+|ld___ARGS: 2 r3 
+|sti___ARGS: r3 fin -16 
+|ld___ARGS: 0 r3 
+|zjmp___ARGS: infi 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|zjmp___ARGS: 0 
+|ld___ARGS: 10 r8 
+|sub___ARGS: r6 r8 r6 
+|and___ARGS: r6 2147483648 r8 
+|zjmp___ARGS: cont 
+|ld___ARGS: 118 r8 
+|add___ARGS: r6 r8 r6 
+|add___ARGS: r6 r6 r6 
+|ld___ARGS: 272 r8 
+|ld___ARGS: 29 r9 
+|ldi___ARGS: p64deb r6 r7 
+|sti___ARGS: r7 r8 r6 
+|sti___ARGS: r7 r9 r6 
+|live___ARGS: 1 
+|ld___ARGS: 0 r10 
+|zjmp___ARGS: 186 
+|ld___ARGS: 425 r2 
+|ld___ARGS: 0 r3 
+|ld___ARGS: 4 r4 
+|live___ARGS: 42 
+|sti___ARGS: r10 fin r2 
+|sti___ARGS: r10 fin r3 
+|add___ARGS: r4 r5 r4 
+|add___ARGS: r3 r4 r3 
+|sub___ARGS: r2 r4 r2 
+|zjmp___ARGS: tirdow 
+|ld___ARGS: 0 r11 
+|zjmp___ARGS: tird 
+|zjmp___ARGS: p1 
+|live___ARGS: 633 
+KKKKKKKK
+2981champion successfully assembled

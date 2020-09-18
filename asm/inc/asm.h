@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/07/02 01:20:05 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:38:10 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ typedef enum
 	DIRECT_LABEL,
 	LABEL,
 	INDIRECT_LABEL,
+	INDIRECT,
 	INSTRUCTION,
 	REGISTER,
-	END_LINE
+	END_LINE,
+	END
 } t_type;
 
 typedef struct		s_response
@@ -45,6 +47,20 @@ typedef struct		s_response
 	char			*error;
 	void			*data;
 }					t_response;
+
+typedef struct		s_token
+{
+	int				line;
+	int				col;
+	t_type			type;
+	char			*content;
+	t_vec			*args;
+	int				byte_size;
+	int				byte_number;
+	unsigned char	op_code;
+	int				t_dir_size;
+	unsigned char	args_code;
+}					t_token;
 
 typedef struct		s_parser
 {
@@ -54,19 +70,12 @@ typedef struct		s_parser
 	int				fd;
 	char			*name;
 	char			*comment;
-	t_token			*token;
-	t_vec			*byte_code;
-	t_vec			*buffer;
 	t_vec			*tokens;
+	t_token			*token;
+	unsigned char	*byte_code;
+	int				code_len;
+	int				current_byte;
 }					t_parser;
-
-typedef struct		s_token
-{
-	int				line;
-	int				col;
-	t_type			type;
-	char			*content;
-}					t_token;
 
 int					assemble(const char *filename);
 void				tokenize(t_parser *parse_struct);
@@ -80,6 +89,20 @@ void				direct_label_token_create(t_parser *parse_struct, \
 															char **carriage);
 void				direct_token_create(t_parser *parse_struct, \
 															char **carriage);
+void				label_token_create(t_parser *parse_struct, char **carriage);
+
+void 				indirect_token_create(t_parser *parse_struct, \
+															char **carriage);
+t_token				*take_next_token(t_parser *parse_struct);
+
+
+
+void				parse_tokens(t_parser *parse);
+void				parse_arguments(t_parser *parse);
+void				parse_instruction(t_parser *parse);
+
+void				calc_size(t_parser *parse);
+void				translate(t_parser *parse);
 
 /*
 ** helper functions
