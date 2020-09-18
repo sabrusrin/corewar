@@ -6,33 +6,48 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 17:51:58 by chermist          #+#    #+#             */
-/*   Updated: 2020/08/15 08:48:44 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/18 00:20:25 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void parse_instruction(t_parser *parse)
+/*void add_token_arg(t_parser *parse)
 {
 	t_token	*token;
+	int		iter;
+
+	token = *(t_token**)ft_vat(parse->tokens, parse->token->arg);
+	iter = parse->token->arg;
+	while ()
+}*/
+
+int is_arg(t_token *arg)
+{
+	if (arg->type == REGISTER || arg->type == DIRECT_LABEL ||
+		arg->type == DIRECT || arg->type == INDIRECT_LABEL ||
+		arg->type == INDIRECT)
+		return (1);
+	return (0);
+}
+
+void parse_instruction(t_parser *parse)
+{
+	t_token	*arg;
 	t_token	*tmp;
+	t_token *next;
 
-	token = take_next_token(parse);
-	if (parse->token->arg && token->type == END_LINE)
-		throw_error_tokenizing("unexpected token", token->line, token->col);
-	if (token->type != REGISTER || token->type != DIRECT_LABEL ||
-		token->type != DIRECT || token->type != INDIRECT_LABEL)
-	{
-		take_next_token(parse);
-		return ;
-	}
-	if (!parse->token->arg)
-		parse->token->arg = token;
+	arg = take_next_token(parse);
+	if (is_arg(arg))
+		ft_vpush_back(parse->token->args, &arg, sizeof(t_token**));
 	else
+		throw_error_tokenizing("bad instruction argument", arg->line, arg->col);
+	// ft_printf("ARG__%s__%d\n", arg->content, arg->type);
+	tmp  = *(t_token**)ft_vat(parse->tokens, parse->iter + 1);
+	next = *(t_token**)ft_vat(parse->tokens, parse->iter + 2);
+	if (tmp->type == SEPARATOR && is_arg(next))
 	{
-		tmp = parse->token->arg;
+		parse->iter++;
+		return (parse_instruction(parse));
 	}
-	
-
-
 }

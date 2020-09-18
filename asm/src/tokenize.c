@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:56:38 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/06 23:29:29 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:31:48 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,13 @@ void parse_token(t_parser *parse_struct, char **carriage)
 	}
 	else if (**carriage == LABEL_CHAR)
 		label_token_create(parse_struct, carriage);
+	else if ((**carriage == '-' && ft_isdigit(*(*carriage + 1))) || \
+														ft_isdigit(**carriage))
+		indirect_token_create(parse_struct, carriage);
 	else if (ft_strchr(LABEL_CHARS, **carriage))
-	{
 		label_instr_reg_token_create(parse_struct, carriage);
-	}
+	else
+		throw_error_tokenizing("error", parse_struct->line, parse_struct->col);
 }
 
 void tokenize(t_parser *parse_struct)
@@ -93,7 +96,7 @@ void tokenize(t_parser *parse_struct)
 
 	while  ((ret = get_next_line(parse_struct->fd, &line)) > 0)
 	{
-		parse_struct->col = 0;
+		parse_struct->col = 1;
 		tmp = line;
 		while (*line != '\0')
 		{
@@ -105,35 +108,11 @@ void tokenize(t_parser *parse_struct)
 			else
 				parse_token(parse_struct, &line);
 		}
-		token = token_create(parse_struct, END_LINE, "\n");
-		ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+		// token = token_create(parse_struct, END_LINE, "\n");
+		// ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 		ft_strdel(&tmp);
 		parse_struct->line++;
 	}
 	token = token_create(parse_struct, END, "");
 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
-
-	// while (parse_struct->line < parse_struct->buffer->size)
-	// {
-	// 	parse_struct->col = 0;
-	// 	line = *((char**)ft_vat(parse_struct->buffer, parse_struct->line));
-	// 	tmp = line;
-	// 	while (*line != '\0')
-	// 	{
-	// 		if (*line == ' ' || *line == '\t')
-	// 		{
-	// 			line++;
-	// 			parse_struct->col++;
-	// 		}
-	// 		else
-	// 			parse_token(parse_struct, &line);
-	// 	}
-	// 	token = token_create(parse_struct, END_LINE, "\n");
-	// 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
-	// 	ft_strdel(&tmp);
-	// 	parse_struct->line++;
-	// }
-	// token = token_create(parse_struct, END, "");
-	// ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
-	// ft_vdel(&(parse_struct->buffer));
 }

@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 15:04:21 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/12 15:10:38 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/16 20:16:24 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,25 @@ void label_instr_reg_token_create(t_parser *parse_struct, char **carriage)
 		else
 			instruction_token(parse_struct, carriage, i);
 	}
+}
+
+void indirect_token_create(t_parser *parse_struct, char **carriage)
+{
+	t_token	*token;
+	char	*content;
+	int		i;
+
+	(*carriage)++;
+	i = 0;
+	while ((*carriage)[i] && (*carriage)[i] == '-')
+		i++;
+	while ((*carriage)[i] && ft_isdigit((*carriage)[i]))
+		i++;
+	if (!(content = ft_strndup(*carriage, i)))
+		throw_error("error: Can't allocate memory");
+	token = token_create(parse_struct, INDIRECT, content);
+	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	ft_strdel(&content);
+	(*carriage) += i;
+	parse_struct->col += i;
 }

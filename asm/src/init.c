@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 14:16:21 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/06 22:32:21 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/17 23:31:13 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ t_parser	*initialize(const char *filename)
 	if ((parse_struct->fd = open(filename, O_RDONLY)) == -1)
 		throw_error("error: Can't open champion file");
 
-	parse_struct->line = 0;
-	parse_struct->col = 0;
+	parse_struct->line = 1;
+	parse_struct->col = 1;
 	parse_struct->name = NULL;
 	parse_struct->comment = NULL;
-	if (!(parse_struct->byte_code = ft_vnew(1024, sizeof(char))))
-		throw_error("error: Can't initialize vector");
+	parse_struct->current_byte = 0;
+	parse_struct->byte_code = NULL;
+	parse_struct->code_len = 0;
 	if (!(parse_struct->tokens = ft_vnew(64, sizeof(t_token**))))
 		throw_error("error: Can't initialize vector");
 	return (parse_struct);
