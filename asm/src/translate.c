@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 17:24:54 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/19 14:11:31 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 14:21:17 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void put_num(t_parser *parse, int *pos, t_token *arg, long content)
 	unsigned char	*byte;
 	int				i;
 
-	// ft_putnbr(content);
-	// ft_putchar('|');
 	sign = 0;
 	i = arg->byte_size - 1;
 	if (content < 0)
@@ -112,8 +110,6 @@ void put_arg(t_parser *parse, int *pos, t_token *arg)
 	char *c;
 
 	c = arg->content;
-	// ft_putstr(c);
-	// ft_putchar('|');
 	if (*c == 'r' || *c == '%')
 		c++;
 	if (*c == ':')
@@ -133,10 +129,6 @@ void put_commands(t_parser *parse, int *pos)
 	{
 		if (parse->token->type == INSTRUCTION)
 		{
-			// ft_putnbr(parse->token->byte_number);
-			// ft_putchar('\t');
-			// ft_putstr(parse->token->content);
-			// ft_putchar('\t');
 			parse->byte_code[(*pos)++] = parse->token->op_code;
 			if (parse->token->args_code)
 				parse->byte_code[(*pos)++] = parse->token->args_code;
@@ -144,12 +136,9 @@ void put_commands(t_parser *parse, int *pos)
 			while (arg_i < parse->token->args->size)
 			{
 				arg = *(t_token**)ft_vat(parse->token->args, arg_i);
-				// ft_putstr(arg->content);
-				// ft_putchar('\t');
 				put_arg(parse, pos, arg);
 				arg_i++;
 			}
-			// ft_putchar('\n');
 		}
 		parse->token = *(t_token**)ft_vat(parse->tokens, ++(parse->iter));
 	}
