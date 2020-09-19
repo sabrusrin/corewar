@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-t_token *token_create(t_parser *parse_struct, t_type type, char *content)
+t_token	*token_create(t_parser *parse_struct, t_type type, char *content)
 {
 	t_token	*token;
 
@@ -31,11 +31,10 @@ t_token *token_create(t_parser *parse_struct, t_type type, char *content)
 	token->op_code = 0;
 	token->t_dir_size = 0;
 	token->args_code = 0;
-
-	return token;
+	return (token);
 }
 
-void separator_token_create(t_parser *parse_struct, char **carriage)
+void	separator_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 
@@ -45,13 +44,12 @@ void separator_token_create(t_parser *parse_struct, char **carriage)
 	parse_struct->col++;
 }
 
-void direct_label_token_create(t_parser *parse_struct, char **carriage)
+void	direct_label_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 	char	*content;
 	int		i;
 
-	// *carriage += 2;// saving only instruction
 	i = 2;
 	while ((*carriage)[i] && ft_strchr(LABEL_CHARS, (*carriage)[i]))
 		i++;
@@ -70,13 +68,12 @@ void direct_label_token_create(t_parser *parse_struct, char **carriage)
 															parse_struct->col);
 }
 
-void direct_token_create(t_parser *parse_struct, char **carriage)
+void	direct_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 	char	*content;
 	int		i;
 
-	// (*carriage)++;
 	i = 1;
 	if ((*carriage)[i] && (*carriage)[i] == '-')
 		i++;
@@ -91,7 +88,7 @@ void direct_token_create(t_parser *parse_struct, char **carriage)
 	parse_struct->col += i;
 }
 
-void label_token_create(t_parser *parse_struct, char **carriage)
+void	label_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 	char	*content;

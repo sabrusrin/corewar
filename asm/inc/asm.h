@@ -40,7 +40,7 @@ typedef enum
 	REGISTER,
 	END_LINE,
 	END
-} t_type;
+}	t_type;
 
 typedef struct		s_response
 {
@@ -65,7 +65,7 @@ typedef struct		s_token
 typedef struct		s_parser
 {
 	int				iter;
-	int				line;	
+	int				line;
 	int				col;
 	int				fd;
 	char			*name;
@@ -91,11 +91,9 @@ void				direct_token_create(t_parser *parse_struct, \
 															char **carriage);
 void				label_token_create(t_parser *parse_struct, char **carriage);
 
-void 				indirect_token_create(t_parser *parse_struct, \
+void				indirect_token_create(t_parser *parse_struct, \
 															char **carriage);
 t_token				*take_next_token(t_parser *parse_struct);
-
-
 
 void				parse_tokens(t_parser *parse);
 void				parse_arguments(t_parser *parse);

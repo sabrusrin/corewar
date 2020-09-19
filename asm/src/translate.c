@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void put_magic(t_parser *parse, int *pos)
+void	put_magic(t_parser *parse, int *pos)
 {
 	parse->byte_code[(*pos)++] = (char)0x00;
 	parse->byte_code[(*pos)++] = (char)0xea;
@@ -20,7 +20,7 @@ void put_magic(t_parser *parse, int *pos)
 	parse->byte_code[(*pos)++] = (char)0xf3;
 }
 
-void put_name(t_parser *parse, int *pos)
+void	put_name(t_parser *parse, int *pos)
 {
 	int i;
 	int c;
@@ -32,7 +32,7 @@ void put_name(t_parser *parse, int *pos)
 	*pos = c + PROG_NAME_LENGTH + 4;
 }
 
-void put_comment(t_parser *parse, int *pos)
+void	put_comment(t_parser *parse, int *pos)
 {
 	int i;
 	int c;
@@ -44,10 +44,10 @@ void put_comment(t_parser *parse, int *pos)
 	*pos = c + COMMENT_LENGTH + 4;
 }
 
-void put_code_size(t_parser *parse, int *pos)
+void	put_code_size(t_parser *parse, int *pos)
 {
-	unsigned char *byte;
-	int i;
+	unsigned char	*byte;
+	int				i;
 
 	byte = ((unsigned char*)&(parse->current_byte)) + 3;
 	i = 0;
@@ -55,7 +55,7 @@ void put_code_size(t_parser *parse, int *pos)
 		parse->byte_code[(*pos)++] = *byte--;
 }
 
-void put_num(t_parser *parse, int *pos, t_token *arg, long content)
+void	put_num(t_parser *parse, int *pos, t_token *arg, long content)
 {
 	char			sign;
 	unsigned char	*byte;
@@ -74,11 +74,9 @@ void put_num(t_parser *parse, int *pos, t_token *arg, long content)
 		parse->byte_code[(*pos)++] = *byte--;
 }
 
-void put_label(t_parser *parse, int *pos, t_token *arg, char *c)
+void	put_label(t_parser *parse, int *pos, t_token *arg, char *c)
 {
 	t_token	*tmp;
-	t_token	*label;
-	t_token	*istr;
 	int		iter;
 	int		len;
 	long	content;
@@ -90,8 +88,6 @@ void put_label(t_parser *parse, int *pos, t_token *arg, char *c)
 				(!ft_strcmp(tmp->content, c) && \
 				tmp->type != LABEL)))
 		tmp = *(t_token**)ft_vat(parse->tokens, ++iter);
-	label =  *(t_token**)ft_vat(parse->tokens, iter);
-	istr =  *(t_token**)ft_vat(parse->tokens, iter + 1);
 	if (iter >= parse->tokens->size)
 		throw_error_tokenizing("no label found", parse->token->line, \
 															parse->token->col);
@@ -104,7 +100,7 @@ void put_label(t_parser *parse, int *pos, t_token *arg, char *c)
 	}
 }
 
-void put_arg(t_parser *parse, int *pos, t_token *arg)
+void	put_arg(t_parser *parse, int *pos, t_token *arg)
 {
 	long content;
 	char *c;
@@ -113,15 +109,15 @@ void put_arg(t_parser *parse, int *pos, t_token *arg)
 	if (*c == 'r' || *c == '%')
 		c++;
 	if (*c == ':')
-		return put_label(parse, pos, arg, ++c);
+		return (put_label(parse, pos, arg, ++c));
 	content = ft_atol(c);
 	put_num(parse, pos, arg, content);
 }
 
-void put_commands(t_parser *parse, int *pos)
+void	put_commands(t_parser *parse, int *pos)
 {
 	t_token	*arg;
-	int	arg_i;
+	int		arg_i;
 
 	parse->iter = 0;
 	parse->token = *(t_token**)ft_vat(parse->tokens, parse->iter);
@@ -145,7 +141,7 @@ void put_commands(t_parser *parse, int *pos)
 	ft_putnbr(parse->code_len);
 }
 
-void translate(t_parser *parse)
+void	translate(t_parser *parse)
 {
 	int	len;
 	int i;
@@ -159,7 +155,6 @@ void translate(t_parser *parse)
 	while (i < len)
 		parse->byte_code[i++] = 0;
 	parse->code_len = len;
-
 	put_magic(parse, &current_pos);
 	put_name(parse, &current_pos);
 	put_code_size(parse, &current_pos);

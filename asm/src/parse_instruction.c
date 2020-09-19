@@ -12,17 +12,7 @@
 
 #include "asm.h"
 
-/*void add_token_arg(t_parser *parse)
-{
-	t_token	*token;
-	int		iter;
-
-	token = *(t_token**)ft_vat(parse->tokens, parse->token->arg);
-	iter = parse->token->arg;
-	while ()
-}*/
-
-int is_arg(t_token *arg)
+int		is_arg(t_token *arg)
 {
 	if (arg->type == REGISTER || arg->type == DIRECT_LABEL ||
 		arg->type == DIRECT || arg->type == INDIRECT_LABEL ||
@@ -31,7 +21,7 @@ int is_arg(t_token *arg)
 	return (0);
 }
 
-void parse_instruction(t_parser *parse)
+void	parse_instruction(t_parser *parse)
 {
 	t_token	*arg;
 	t_token	*tmp;
@@ -42,8 +32,7 @@ void parse_instruction(t_parser *parse)
 		ft_vpush_back(parse->token->args, &arg, sizeof(t_token**));
 	else
 		throw_error_tokenizing("bad instruction argument", arg->line, arg->col);
-	// ft_printf("ARG__%s__%d\n", arg->content, arg->type);
-	tmp  = *(t_token**)ft_vat(parse->tokens, parse->iter + 1);
+	tmp = *(t_token**)ft_vat(parse->tokens, parse->iter + 1);
 	next = *(t_token**)ft_vat(parse->tokens, parse->iter + 2);
 	if (tmp->type == SEPARATOR && is_arg(next))
 	{

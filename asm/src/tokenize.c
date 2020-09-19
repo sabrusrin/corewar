@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void champ_name_comment_token_create(t_parser *parse_struct, char **carriage)
+void	champ_name_comment_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 
@@ -35,7 +35,7 @@ void champ_name_comment_token_create(t_parser *parse_struct, char **carriage)
 								parse_struct->line, parse_struct->col);
 }
 
-void string_token_create(t_parser *parse_struct, char **carriage)
+void	string_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 	char	*string;
@@ -58,7 +58,7 @@ void string_token_create(t_parser *parse_struct, char **carriage)
 										parse_struct->line, parse_struct->col);
 }
 
-void parse_token(t_parser *parse_struct, char **carriage)
+void	parse_token(t_parser *parse_struct, char **carriage)
 {
 	if (**carriage == COMMAND_CHAR)
 		champ_name_comment_token_create(parse_struct, carriage);
@@ -87,14 +87,14 @@ void parse_token(t_parser *parse_struct, char **carriage)
 		throw_error_tokenizing("error", parse_struct->line, parse_struct->col);
 }
 
-void tokenize(t_parser *parse_struct)
+void	tokenize(t_parser *parse_struct)
 {
 	t_token	*token;
 	char	*line;
 	char	*tmp;
 	int		ret;
 
-	while  ((ret = get_next_line(parse_struct->fd, &line)) > 0)
+	while ((ret = get_next_line(parse_struct->fd, &line)) > 0)
 	{
 		parse_struct->col = 1;
 		tmp = line;

@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void if_direct(t_parser *parse, t_token *arg, int arg_num)
+void	if_direct(t_parser *parse, t_token *arg, int arg_num)
 {
 	arg->byte_number = parse->current_byte;
 	arg->byte_size = parse->token->t_dir_size;
@@ -25,7 +25,7 @@ void if_direct(t_parser *parse, t_token *arg, int arg_num)
 		parse->token->args_code += 8;
 }
 
-void if_indirect(t_parser *parse, t_token *arg, int arg_num)
+void	if_indirect(t_parser *parse, t_token *arg, int arg_num)
 {
 	arg->byte_number = parse->current_byte;
 	arg->byte_size = 2;
@@ -38,7 +38,7 @@ void if_indirect(t_parser *parse, t_token *arg, int arg_num)
 		parse->token->args_code += 12;
 }
 
-void if_register(t_parser *parse, t_token *arg, int arg_num)
+void	if_register(t_parser *parse, t_token *arg, int arg_num)
 {
 	arg->byte_number = parse->current_byte;
 	arg->byte_size = 1;
@@ -51,7 +51,7 @@ void if_register(t_parser *parse, t_token *arg, int arg_num)
 		parse->token->args_code += 4;
 }
 
-void get_op_weight(t_parser *parse, unsigned char op_code, int t_dir_size, \
+void	get_op_weight(t_parser *parse, unsigned char op_code, int t_dir_size, \
 												unsigned char args_code)
 {
 	t_token	*arg;
@@ -79,7 +79,7 @@ void get_op_weight(t_parser *parse, unsigned char op_code, int t_dir_size, \
 										parse->token->byte_number - 1;
 }
 
-void put_operation_weight(t_parser *parse)
+void	put_operation_weight(t_parser *parse)
 {
 	if (!ft_strcmp(parse->token->content, "live"))
 		get_op_weight(parse, 0x01, 4, 0);
@@ -115,8 +115,7 @@ void put_operation_weight(t_parser *parse)
 		get_op_weight(parse, 0x10, 4, 1);
 }
 
-
-void calc_size(t_parser *parse)
+void	calc_size(t_parser *parse)
 {
 	parse->iter = 0;
 	parse->token = *(t_token**)ft_vat(parse->tokens, parse->iter);

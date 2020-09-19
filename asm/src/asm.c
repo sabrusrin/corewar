@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-char *get_cor_filename(char *filename)
+char	*get_cor_filename(char *filename)
 {
 	char	*base;
 	char	*cor;
@@ -23,10 +23,10 @@ char *get_cor_filename(char *filename)
 	if (!(cor = ft_strjoin(base, ".cor")))
 		throw_error("failed to create filename");
 	ft_strdel(&base);
-	return(cor);
+	return (cor);
 }
 
-void create_file(t_parser *parse, char *filename)
+void	create_file(t_parser *parse, char *filename)
 {
 	char	*cor_filename;
 	int		out_len;
@@ -42,35 +42,18 @@ void create_file(t_parser *parse, char *filename)
 	close(parse->fd);
 }
 
-int assemble(char *filename)
+int		assemble(char *filename)
 {
 	t_parser	*parse_struct;
 	t_token		*test;
 	int			test_i;
 
 	parse_struct = initialize(filename);
-
-	// read_champion(parse_struct);
 	tokenize(parse_struct);
-
-	// tokenizer out
-	// for (test_i = 0; test_i < parse_struct->tokens->size; test_i++) {
-		// test = *(t_token**)ft_vat(parse_struct->tokens, test_i);
-		// ft_printf("_%d__%d\t%d\t%s_\n", test->line, test->col, test->type, test->content);
-	// }
-
-	// validate tokens
 	parse_tokens(parse_struct);
 	parse_arguments(parse_struct);
-
 	calc_size(parse_struct);
-
-	// translate
 	translate(parse_struct);
-
-	// create file
 	create_file(parse_struct, filename);
-
-	// free_parse_struct(&parse_struct);
 	return (1);
 }

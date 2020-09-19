@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int check_filename(const char *filename, const char *suffix)
+int	check_filename(const char *filename, const char *suffix)
 {
 	int name_len;
 	int suffix_len;
@@ -27,6 +27,5 @@ int check_filename(const char *filename, const char *suffix)
 				return (1);
 		}
 	}
-
 	return (0);
 }

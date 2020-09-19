@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void throw_error(char *err)
+void	throw_error(char *err)
 {
 	if (errno == 0)
 	{
@@ -22,11 +22,10 @@ void throw_error(char *err)
 	{
 		perror(err);
 	}
-
 	exit(1);
 }
 
-void throw_error_tokenizing(char *err, int line, int col)
+void	throw_error_tokenizing(char *err, int line, int col)
 {
 	if (err)
 	{

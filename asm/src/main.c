@@ -12,17 +12,13 @@
 
 #include "asm.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac == 2 && check_filename(av[1], ".s"))
 		assemble(av[1]);
 	else if (ac == 2 && check_filename(av[1], ".cor"))
-	{
 		ft_printf("disassembler");
-		// disassemble(av[1]);
-	}
 	else
 		ft_printf("usage:\n\t- ./asm *.s\n\t- ./asm *.cor");
-	
 	return (0);
 }

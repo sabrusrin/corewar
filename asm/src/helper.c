@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int string_len(char **carriage, char delim)
+int		string_len(char **carriage, char delim)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int string_len(char **carriage, char delim)
 	return (i);
 }
 
-void comment_skip(t_parser *parse_struct, char **carriage)
+void	comment_skip(t_parser *parse_struct, char **carriage)
 {
 	while (**carriage)
 	{

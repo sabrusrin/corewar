@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void live_zjmp_fork_lfork(t_parser *parse)
+void	live_zjmp_fork_lfork(t_parser *parse)
 {
 	t_token *arg;
 
@@ -25,7 +25,7 @@ void live_zjmp_fork_lfork(t_parser *parse)
 											parse->token->col);
 }
 
-void ld_lld(t_parser *parse)
+void	ld_lld(t_parser *parse)
 {
 	t_token *arg;
 
@@ -43,7 +43,7 @@ void ld_lld(t_parser *parse)
 											parse->token->col);
 }
 
-void st(t_parser *parse)
+void	st(t_parser *parse)
 {
 	t_token *arg;
 
@@ -61,7 +61,7 @@ void st(t_parser *parse)
 											parse->token->col);
 }
 
-void add_sub(t_parser *parse)
+void	add_sub(t_parser *parse)
 {
 	t_token *arg;
 
@@ -82,7 +82,7 @@ void add_sub(t_parser *parse)
 											parse->token->col);
 }
 
-void and_or_xor(t_parser *parse)
+void	and_or_xor(t_parser *parse)
 {
 	t_token *arg;
 
@@ -91,12 +91,12 @@ void and_or_xor(t_parser *parse)
 										parse->token->line, parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 0);
 	if (arg->type != REGISTER && arg->type != INDIRECT && arg->type != DIRECT \
-		 && arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
+		&& arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
 		throw_error_tokenizing("invalid argument 1", parse->token->line, \
 											parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 1);
 	if (arg->type != REGISTER && arg->type != INDIRECT && arg->type != DIRECT \
-		 && arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
+		&& arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
 		throw_error_tokenizing("invalid argument 2", parse->token->line, \
 											parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 2);
@@ -105,7 +105,7 @@ void and_or_xor(t_parser *parse)
 											parse->token->col);
 }
 
-void ldi_lldi(t_parser *parse)
+void	ldi_lldi(t_parser *parse)
 {
 	t_token *arg;
 
@@ -114,7 +114,7 @@ void ldi_lldi(t_parser *parse)
 										parse->token->line, parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 0);
 	if (arg->type != REGISTER && arg->type != INDIRECT && arg->type != DIRECT \
-		 && arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
+		&& arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
 		throw_error_tokenizing("invalid argument 1", parse->token->line, \
 											parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 1);
@@ -128,7 +128,7 @@ void ldi_lldi(t_parser *parse)
 											parse->token->col);
 }
 
-void sti(t_parser *parse)
+void	sti(t_parser *parse)
 {
 	t_token *arg;
 
@@ -141,7 +141,7 @@ void sti(t_parser *parse)
 											parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 1);
 	if (arg->type != REGISTER && arg->type != INDIRECT && arg->type != DIRECT \
-		 && arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
+		&& arg->type != INDIRECT_LABEL && arg->type != DIRECT_LABEL)
 		throw_error_tokenizing("invalid argument 2", parse->token->line, \
 											parse->token->col);
 	arg = *(t_token**)ft_vat(parse->token->args, 2);
@@ -151,7 +151,7 @@ void sti(t_parser *parse)
 											parse->token->col);
 }
 
-void aff(t_parser *parse)
+void	aff(t_parser *parse)
 {
 	t_token *arg;
 
@@ -164,7 +164,7 @@ void aff(t_parser *parse)
 											parse->token->col);
 }
 
-void check_instruction(t_parser *parse)
+void	check_instruction(t_parser *parse)
 {
 	char *content;
 
@@ -192,7 +192,7 @@ void check_instruction(t_parser *parse)
 													parse->token->col);
 }
 
-void parse_arguments(t_parser *parse)
+void	parse_arguments(t_parser *parse)
 {
 	parse->iter = 0;
 	parse->token = *(t_token**)ft_vat(parse->tokens, parse->iter);

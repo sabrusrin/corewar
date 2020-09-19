@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-void label_token(t_parser *parse_struct, char **carriage, int i)
+void	label_token(t_parser *parse_struct, char **carriage, int i)
 {
 	t_token	*token;
 	char	*content;
@@ -26,7 +26,7 @@ void label_token(t_parser *parse_struct, char **carriage, int i)
 	parse_struct->col += i;
 }
 
-void register_token(t_parser *parse_struct, char **carriage, int i)
+void	register_token(t_parser *parse_struct, char **carriage, int i)
 {
 	t_token	*token;
 	char	*content;
@@ -40,7 +40,7 @@ void register_token(t_parser *parse_struct, char **carriage, int i)
 	parse_struct->col += i;
 }
 
-void instruction_token(t_parser *parse_struct, char **carriage, int i)
+void	instruction_token(t_parser *parse_struct, char **carriage, int i)
 {
 	t_token	*token;
 	char	*content;
@@ -54,7 +54,7 @@ void instruction_token(t_parser *parse_struct, char **carriage, int i)
 	parse_struct->col += i;
 }
 
-void label_instr_reg_token_create(t_parser *parse_struct, char **carriage)
+void	label_instr_reg_token_create(t_parser *parse_struct, char **carriage)
 {
 	int	i;
 	int	digit_counter;
@@ -82,7 +82,7 @@ void label_instr_reg_token_create(t_parser *parse_struct, char **carriage)
 	}
 }
 
-void indirect_token_create(t_parser *parse_struct, char **carriage)
+void	indirect_token_create(t_parser *parse_struct, char **carriage)
 {
 	t_token	*token;
 	char	*content;

@@ -20,7 +20,6 @@ t_parser	*initialize(const char *filename)
 		throw_error("error: Can't allocate memory");
 	if ((parse_struct->fd = open(filename, O_RDONLY)) == -1)
 		throw_error("error: Can't open champion file");
-
 	parse_struct->line = 1;
 	parse_struct->col = 1;
 	parse_struct->name = NULL;
