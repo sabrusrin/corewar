@@ -1,0 +1,1 @@
+clang main.c asm.c init.c tokenize.c token_create.c label_instr_reg_token_create.c filename_check.c error.c helper.c parse_tokens.c parse_instruction.c calc_size.c translate.c parse_args.c -lft -L../../libft -I../../libft/includes -I ../inc

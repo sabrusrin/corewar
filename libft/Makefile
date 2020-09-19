@@ -6,7 +6,7 @@
 #    By: chermist <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/27 22:25:22 by chermist          #+#    #+#              #
-#    Updated: 2020/06/24 20:01:05 by chermist         ###   ########.fr        #
+#    Updated: 2020/09/19 09:38:27 by chermist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ STR_F = ft_strlen.c \
 		get_next_line.c
 
 CHR_F = ft_atoi.c \
+		ft_atol.c \
 		ft_atoi_move.c \
 		ft_itoa.c \
 		ft_isalpha.c \

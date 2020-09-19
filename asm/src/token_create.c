@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:57:16 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/17 20:20:06 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 09:53:06 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_token *token_create(t_parser *parse_struct, t_type type, char *content)
 	if (!(token->content = ft_strdup(content)))
 		throw_error("error: Can't allocate memory");
 	if (type == INSTRUCTION)
-		token->args = ft_vnew(5, sizeof(t_token**));
+		token->args = ft_vnew(3, sizeof(t_token**));
 	token->byte_number = 0;
 	token->byte_size = 0;
 	token->op_code = 0;
@@ -51,8 +51,8 @@ void direct_label_token_create(t_parser *parse_struct, char **carriage)
 	char	*content;
 	int		i;
 
-	*carriage += 2;// saving only instruction
-	i = 0;
+	// *carriage += 2;// saving only instruction
+	i = 2;
 	while ((*carriage)[i] && ft_strchr(LABEL_CHARS, (*carriage)[i]))
 		i++;
 	if (i > 0)
@@ -76,9 +76,9 @@ void direct_token_create(t_parser *parse_struct, char **carriage)
 	char	*content;
 	int		i;
 
-	(*carriage)++;
-	i = 0;
-	while ((*carriage)[i] && (*carriage)[i] == '-')
+	// (*carriage)++;
+	i = 1;
+	if ((*carriage)[i] && (*carriage)[i] == '-')
 		i++;
 	while ((*carriage)[i] && ft_isdigit((*carriage)[i]))
 		i++;

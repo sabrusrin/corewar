@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:56:38 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/17 23:31:48 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 10:43:33 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,10 @@ void tokenize(t_parser *parse_struct)
 			else
 				parse_token(parse_struct, &line);
 		}
-		// token = token_create(parse_struct, END_LINE, "\n");
-		// ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
 		ft_strdel(&tmp);
 		parse_struct->line++;
 	}
 	token = token_create(parse_struct, END, "");
 	ft_vpush_back(parse_struct->tokens, &token, sizeof(t_token**));
+	close(parse_struct->fd);
 }

@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:22:05 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 20:00:47 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 09:37:39 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int					ft_wcount(char const *s, char c);
 char				*ft_itoa(int n);
 int					ft_atoi(const char *str);
 int					ft_atoi_move(char **str);
+long				ft_atol(const char *str);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));

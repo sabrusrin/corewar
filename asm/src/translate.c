@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 17:24:54 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/19 00:50:28 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 14:11:31 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void put_comment(t_parser *parse, int *pos)
 	c = *pos;
 	while (parse->comment[i])
 		parse->byte_code[(*pos)++] = parse->comment[i++];
-	*pos = c + PROG_NAME_LENGTH + 4;
+	*pos = c + COMMENT_LENGTH + 4;
 }
 
 void put_code_size(t_parser *parse, int *pos)
@@ -55,9 +55,71 @@ void put_code_size(t_parser *parse, int *pos)
 		parse->byte_code[(*pos)++] = *byte--;
 }
 
+void put_num(t_parser *parse, int *pos, t_token *arg, long content)
+{
+	char			sign;
+	unsigned char	*byte;
+	int				i;
+
+	// ft_putnbr(content);
+	// ft_putchar('|');
+	sign = 0;
+	i = arg->byte_size - 1;
+	if (content < 0)
+	{
+		content *= -1;
+		sign = 1;
+	}
+	content = (sign) ? ~content + 1 : content;
+	byte = ((unsigned char*)&content) + i;
+	while (i-- >= 0)
+		parse->byte_code[(*pos)++] = *byte--;
+}
+
+void put_label(t_parser *parse, int *pos, t_token *arg, char *c)
+{
+	t_token	*tmp;
+	t_token	*label;
+	t_token	*istr;
+	int		iter;
+	int		len;
+	long	content;
+
+	iter = 0;
+	tmp = *(t_token**)ft_vat(parse->tokens, iter);
+	len = ft_strlen(c);
+	while (iter < parse->tokens->size && (ft_strcmp(tmp->content, c) || \
+				(!ft_strcmp(tmp->content, c) && \
+				tmp->type != LABEL)))
+		tmp = *(t_token**)ft_vat(parse->tokens, ++iter);
+	label =  *(t_token**)ft_vat(parse->tokens, iter);
+	istr =  *(t_token**)ft_vat(parse->tokens, iter + 1);
+	if (iter >= parse->tokens->size)
+		throw_error_tokenizing("no label found", parse->token->line, \
+															parse->token->col);
+	else
+	{
+		while (iter < parse->tokens->size && tmp->type != INSTRUCTION)
+			tmp = *(t_token**)ft_vat(parse->tokens, ++iter);
+		content = tmp->byte_number - parse->token->byte_number;
+		put_num(parse, pos, arg, content);
+	}
+}
+
 void put_arg(t_parser *parse, int *pos, t_token *arg)
 {
-	
+	long content;
+	char *c;
+
+	c = arg->content;
+	// ft_putstr(c);
+	// ft_putchar('|');
+	if (*c == 'r' || *c == '%')
+		c++;
+	if (*c == ':')
+		return put_label(parse, pos, arg, ++c);
+	content = ft_atol(c);
+	put_num(parse, pos, arg, content);
 }
 
 void put_commands(t_parser *parse, int *pos)
@@ -71,6 +133,10 @@ void put_commands(t_parser *parse, int *pos)
 	{
 		if (parse->token->type == INSTRUCTION)
 		{
+			// ft_putnbr(parse->token->byte_number);
+			// ft_putchar('\t');
+			// ft_putstr(parse->token->content);
+			// ft_putchar('\t');
 			parse->byte_code[(*pos)++] = parse->token->op_code;
 			if (parse->token->args_code)
 				parse->byte_code[(*pos)++] = parse->token->args_code;
@@ -78,13 +144,16 @@ void put_commands(t_parser *parse, int *pos)
 			while (arg_i < parse->token->args->size)
 			{
 				arg = *(t_token**)ft_vat(parse->token->args, arg_i);
+				// ft_putstr(arg->content);
+				// ft_putchar('\t');
 				put_arg(parse, pos, arg);
 				arg_i++;
 			}
+			// ft_putchar('\n');
 		}
-		parse->token = (*(t_token**)ft_vat(parse->tokens, \
-													++(parse->iter)));
+		parse->token = *(t_token**)ft_vat(parse->tokens, ++(parse->iter));
 	}
+	ft_putnbr(parse->code_len);
 }
 
 void translate(t_parser *parse)
@@ -96,7 +165,6 @@ void translate(t_parser *parse)
 	i = 0;
 	current_pos = 0;
 	len = parse->current_byte + PROG_NAME_LENGTH + COMMENT_LENGTH + 17;
-	ft_putnbr(len);
 	if (!(parse->byte_code = malloc(len)))
 		throw_error("error: Can't allocate memory");
 	while (i < len)
@@ -105,7 +173,7 @@ void translate(t_parser *parse)
 
 	put_magic(parse, &current_pos);
 	put_name(parse, &current_pos);
-	put_comment(parse, &current_pos);
 	put_code_size(parse, &current_pos);
+	put_comment(parse, &current_pos);
 	put_commands(parse, &current_pos);
 }

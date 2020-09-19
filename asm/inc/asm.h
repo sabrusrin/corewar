@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 17:20:09 by chermist          #+#    #+#             */
-/*   Updated: 2020/09/17 23:38:10 by chermist         ###   ########.fr       */
+/*   Updated: 2020/09/19 10:55:42 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct		s_parser
 	int				current_byte;
 }					t_parser;
 
-int					assemble(const char *filename);
+int					assemble(char *filename);
 void				tokenize(t_parser *parse_struct);
 t_token				*token_create(t_parser *parse_struct, t_type type, \
 																char *content);
