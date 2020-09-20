@@ -56,8 +56,7 @@ typedef	struct	s_var
 */
 
 t_uint			reverse_byte_by_byte_int(t_uint num);
-short			reverse_byte_by_byte_short(short num);
-t_ushort	reverse_byte_by_byte_short(t_ushort num);
+t_ushort		reverse_byte_by_byte_short(t_ushort num);
 
 void			print_binary_uint(t_uint n);
 void			print_binary_uchar(t_uchar n);
