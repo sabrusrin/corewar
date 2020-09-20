@@ -29,7 +29,6 @@ int		champs_greet(t_corewar *cw)
 	return (0);
 }
 
-// TODO: Выстроить список в соответствии с флагом -n
 int		champs_init(t_corewar *cw, int ac, char **av)
 {
 	int		i;

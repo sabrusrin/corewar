@@ -31,15 +31,15 @@ typedef struct		s_champ {
 
 typedef struct		s_head
 {
-	int				id;				// id каретки
-	int				champ_id;		// id чемпиона
-	char			carry;			// флаг carry
-	int				op_code;		// код операции, на которой стоит каретка
-	int				last_live;		// номер цикла последнего выполнения live
-	int				to_op;			// количество циклов до выполнения операции
-	int				pos;			// текущая позиция
-	int				to_next;		// сколько байт пройти к следующей операции
-	unsigned int	*regs;			// регистры
+	int				id;
+	int				champ_id;
+	char			carry;
+	int				op_code;
+	int				last_live;
+	int				to_op;
+	int				pos;
+	int				to_next;
+	unsigned int	*regs;
 	struct s_head	*next;
 }					t_head;
 

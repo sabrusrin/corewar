@@ -31,7 +31,6 @@ int			main(int ac, char **av)
 
 	if (ac < 2)
 		return (usage(av[0]));
-	// args_parse(ac, av);
 	if (ac > MAX_PLAYERS + 1)
 		return (too_many_players(av[0]));
 	champs_init(&cw, ac, av);
