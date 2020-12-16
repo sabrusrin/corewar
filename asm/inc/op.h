@@ -75,7 +75,7 @@ typedef struct					s_header
 ** args_types		— types of arguments
 ** op_code			— code of operator
 ** wait_cycles		- cycles until execution
-** byte_type		— if true then op_code modifies carry (if I understand correctly)
+** byte_type		— if true then op_code modifies carry
 ** t_dir_short		— size of T_DIR, if true then short
 */
 typedef struct					s_op
