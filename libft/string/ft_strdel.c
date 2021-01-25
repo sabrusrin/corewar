@@ -6,7 +6,7 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 12:55:29 by chermist          #+#    #+#             */
-/*   Updated: 2018/12/01 14:18:19 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/21 22:10:14 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_strdel(char **as)
 {
-	if (!as)
+	if (!as && !*as)
 		return ;
 	free(*as);
 	*as = NULL;

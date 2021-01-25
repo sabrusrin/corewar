@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/21 13:51:19 by chermist          #+#    #+#             */
+/*   Updated: 2020/07/01 15:01:47 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void throw_error(char *err)
 {
-	size_t i;
-	size_t lsrc;
-
-	if (src && dst)
+	if (errno == 0)
 	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
-		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
-		}
+		ft_putendl_fd(err, 2);
+	}
+	else
+	{
+		perror(err);
 	}
 
-	return (dst);
+	exit(1);
+}
+
+void throw_error_tokenizing(char *err, int line, int col)
+{
+	if (err)
+	{
+		ft_dprintf(2, "lexical error:%d:%d:	%s\n", line, col, err);
+		exit(1);
+	}
 }

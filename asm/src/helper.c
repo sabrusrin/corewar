@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2020/07/01 15:11:22 by chermist          #+#    #+#             */
+/*   Updated: 2020/07/01 15:30:04 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int string_len(char **carriage, char delim)
 {
-	size_t i;
-	size_t lsrc;
+	int	i;
 
-	if (src && dst)
+	i = 0;
+	while ((*carriage)[i] && (*carriage)[i] != delim)
+		i++;
+	if (i == 0)
+		return (0);
+	return (i);
+}
+
+void comment_skip(t_parser *parse_struct, char **carriage)
+{
+	while (**carriage)
 	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
-		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
-		}
+		(*carriage)++;
+		parse_struct->col++;
 	}
-
-	return (dst);
 }

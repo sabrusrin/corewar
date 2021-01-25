@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   filename_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/20 16:07:09 by chermist          #+#    #+#             */
+/*   Updated: 2020/07/01 14:37:24 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int check_filename(const char *filename, const char *suffix)
 {
-	size_t i;
-	size_t lsrc;
+	int name_len;
+	int suffix_len;
 
-	if (src && dst)
+	if (filename && suffix)
 	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
+		if (ft_strstr(filename, suffix))
 		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
+			name_len = ft_strlen(filename);
+			suffix_len = ft_strlen(suffix) - 1;
+			if (ft_strcmp(filename + (name_len - suffix_len), suffix))
+				return (1);
 		}
 	}
 
-	return (dst);
+	return (0);
 }

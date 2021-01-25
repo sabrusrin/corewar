@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2020/06/20 16:01:25 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/21 21:47:30 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int main(int ac, char **av)
 {
-	size_t i;
-	size_t lsrc;
-
-	if (src && dst)
+	if (ac == 2 && check_filename(av[1], ".s"))
 	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
+		if (assemble(av[1]))
+			ft_printf("champion successfully assembled");
+		else
 		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
+			ft_putendl_fd("failed to assemble champion", 2);
+			exit (1);
 		}
 	}
-
-	return (dst);
+	else if (ac == 2 && check_filename(av[1], ".cor"))
+	{
+		ft_printf("disassembler");
+		// disassemble(av[1]);
+	}
+	else
+		ft_printf("usage:\n\t- ./asm *.s\n\t- ./asm *.cor");
+	
+	return (0);
 }

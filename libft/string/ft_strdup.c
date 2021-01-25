@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chermist <chermist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 15:25:55 by chermist          #+#    #+#             */
-/*   Updated: 2018/12/13 00:57:57 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/24 19:56:26 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ char	*ft_strdup(const char *s1)
 	char	*cp;
 	char	*pcp;
 
-	len = ft_strlen(s1);
-	if (!(cp = malloc(len + 1)))
-		return (NULL);
-	pcp = cp;
-	while (len--)
-		*cp++ = *s1++;
-	*(cp) = 0;
+	pcp = NULL;
+	if (s1)
+	{
+		len = ft_strlen(s1);
+		if (!(cp = malloc(len + 1)))
+			return (pcp);
+		pcp = cp;
+		while (len--)
+			*cp++ = *s1++;
+		*(cp) = 0;
+	}
 	return (pcp);
 }

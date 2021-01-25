@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 15:26:48 by chermist          #+#    #+#             */
-/*   Updated: 2020/06/24 18:16:22 by chermist         ###   ########.fr       */
+/*   Created: 2018/12/13 20:25:09 by chermist          #+#    #+#             */
+/*   Updated: 2020/06/28 20:30:22 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+# define BUFF_SIZE 2
+
+typedef struct		s_line
 {
-	size_t i;
-	size_t lsrc;
+	int				fd;
+	void			*con;
+	ssize_t			c_sz;
+	struct s_line	*next;
+}					t_line;
 
-	if (src && dst)
-	{
-		i = 0;
-		lsrc = ft_strlen(src);
-		while (i < len)
-		{
-			if (i < lsrc)
-				dst[i] = src[i];
-			else
-				dst[i] = '\0';
-			i++;
-		}
-	}
+int					get_next_line(const int fd, char **line);
 
-	return (dst);
-}
+#endif

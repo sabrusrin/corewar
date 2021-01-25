@@ -6,18 +6,19 @@
 /*   By: chermist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:25:09 by chermist          #+#    #+#             */
-/*   Updated: 2019/11/21 19:11:55 by chermist         ###   ########.fr       */
+/*   Updated: 2020/06/28 20:36:08 by chermist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include "libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 128
 
 typedef struct		s_line
 {
